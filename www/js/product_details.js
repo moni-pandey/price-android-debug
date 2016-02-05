@@ -1,5 +1,6 @@
 $(document).ready(function(){
 //alert(localStorage.getItem('productid'));
+url=''
 var pk =localStorage.getItem('productid')
  $(document).bind("deviceready", function() {
 			document.addEventListener("backbutton", function() {
@@ -9,6 +10,10 @@ var pk =localStorage.getItem('productid')
 			});
 			});
   $body = $("body");
+  $(document).on('click' ,'#getex' ,function(){
+  window.open(url, '_system');
+  
+  })
   $.ajax({
 	    type : 'GET',
 	    url: 'http://staging12.getpriceapp.com/item-details/'+pk+'/',
@@ -67,7 +72,7 @@ else
 parsedetails.price='N/A';
 //url =parsedetails.photo_set[0].url_large
 
-
+url=parsedetails.purchase_url
 if(parsedetails.photo_set[2])
 var i3 = parsedetails.photo_set[2].url_medium
 else
