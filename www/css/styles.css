@@ -1,4 +1,4 @@
-	* for spinner */
+	/* for spinner */
 
 	/* Start by setting display:none to make this hidden.
 	   Then we position it in relation to the viewport window
@@ -64,7 +64,11 @@
 		position:relative; border-top-left-radius:10px; 
 		border-top-right-radius:10px; width:100%
 		width
-	}
+	} 
+.i1 {
+width : 200px;
+height : 250px
+}
 
 	.item-price   {
 	   position:absolute; top:6%; left:9%; 

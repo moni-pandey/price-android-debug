@@ -1,4 +1,5 @@
 	$(document).ready(function() {
+		
 		console.log('doc ready');
 		localStorage.setItem('productid', ' ');
 		$(".bottom-search-bg").hide();
@@ -11,10 +12,13 @@
 		cat = ''
 		type = ''
 		color=''
+		hasnext=false
 		var userdata = loginMethods.getUserInfo();
 		if (userdata.fbGender == 'female') {
 			cat = 'all';
+			//cat = 'bags';
 			type='female'
+		//	alert('calling')
 		   makeAjaxcall();
 
 		} else {
@@ -47,7 +51,10 @@
 
 				if ($(window).scrollTop() + $(window).height() == $(document).height()) {
 					//alert("bottom!");
-					loadmore();
+					//if(hasnext)
+					  loadmore();
+					// else 
+                      //alert('No more products available'); 					 
 				}
 
 			});
@@ -70,6 +77,25 @@
 			mixpanel.track("preview", {
 				"id": '1234'
 			});
+
+		});
+
+          //color--picker
+		$(document).on('click', '.border-colorpicker div', function(e) {
+			
+			var id  = e.target.id;
+			if(id=='c19'||id =='c20')
+			  color='red'
+			else if(id =='c1'||id =='c2'||id =='c3')
+			    color='orange'
+			else if(id =='c17')
+			color='pink,blue'
+			else if(id =='c10'||id =='c11'||id =='c12'||id =='c13'||id =='c14'||id =='c15'||id =='c16')
+			 color='blue'
+			 else
+			   console.log('not at backend');
+			   
+			   callforcolorfilter();
 
 		});
 		//add to cart 
@@ -102,39 +128,46 @@
 			var id = event.target.id;
 			categoryitemclicked = true
 			if (userdata.fbGender == 'female') {
+			type='female'
 				if (id == 'clothingimg') {
-					cat = 'Women' + '\'s Clothing'
-					console.log(category);
+					cat = 'clothing'
+					console.log(cat);
 				} else if (id == 'sunglassimg') {
-					cat = 'Women' + '\'s sunglass'
-					console.log(category);
+					cat = 'sunglasses'
+					console.log(cat);
 				} else if (id == 'necklaceimg') {
-					cat = 'necklace'
-					console.log(category);
+					cat = 'jewelry'
+					console.log(cat);
 				} else if (id == 'purseimg') {
-					cat = 'purse'
-					console.log(category);
+					cat = 'bags'
+					console.log(cat);
+				}else if (id == 'sandleimg') {
+					cat = 'shoes'
+					console.log(cat);
 				} else {
-					cat = "The Perfect Present";
-					console.log(category);
+					cat = "watches";
+					console.log(cat);
 				}
-			} else {
+			} 
+			
+			else {
+			type='male'
 				//alert('else')
 				if (id == 'clothingimg') {
-					cat = 'men' + '\'s clothing'
-					console.log(category);
+					cat = 'clothing'
+					console.log(cat);
 				} else if (id == 'watchimg') {
-					cat = 'men' + '\'s watch'
-					console.log(category);
+					cat = 'watches'
+					console.log(cat);
 				} else if (id == 'gadgetimg') {
-					cat = 'gadget'
-					console.log(category);
+					cat = 'electronics'
+					console.log(cat);
 				} else if (id == 'cycleimg') {
-					cat = 'cycling'
-					console.log(category);
+					cat = 'outdoogear'
+					console.log(cat);
 				} else {
-					cat = 'Men' + '\'s Sunglass';
-					console.log(category);
+					cat = 'sunglasses';
+					console.log(cat);
 				}
 
 
@@ -158,23 +191,31 @@
 				dataType: "json",
 				data: {
 					"category": cat,
-					"page_no": '1',
-					"show_by" :"10"
+					"page": 1,
+					"show_by" :10,
+					'type':type
 
 				},
 				success: function(data) {
-
-					if (data.error)
-						alert(data.error);
-					 console.log('insidesucees');
+                       //alert(JSON.stringify(data));
+					
+					    console.log('insidesucees');
 					var getitemdata = JSON.stringify(data);
 					console.log(JSON.stringify(data));
 					localStorage.setItem('itemdata', '');
 					localStorage.setItem('itemdata', getitemdata);
 					var parsedata = JSON.parse(localStorage.getItem('itemdata'));
-					console.log('calling load prof from windows ');
-					loadprof();
-
+					// if(parsedata[0].paginator.has_next)
+//hasnext=true;  
+				
+				if(parsedata[0].products.length)
+				{console.log('calling load prof from windows ');
+					loadprof()
+				   }
+				   else{
+				   $('.add-items').html('');
+				$('.add-items').append('<p><b>SORRY.. will be back soon </b></p>')
+}
 
 				},
 
@@ -200,59 +241,76 @@
 			$('.add-items').html(' ');
 			categoryitemclicked = false;
 		}
+		
+		//var i1 =
 //alert(parsedata[0].fields.photo_set[0].url_medium)
-		for (i = 0; i < parsedata.length; i += 2) {
+		for (i = 0; i < parsedata[0].products.length; i += 2) {
 			
 			var img10, img11, img12, img13;
 			var img20, img21, img22, img23;
 			console.log("i:" + i);
 
-			
-			for(j=0;j<4;j++)
+			img10= parsedata[0].products[i].fields.photo_set[0].url_medium
+			img11= parsedata[0].products[i+1].fields.photo_set[0].url_medium
+			/*for(j=0;j<parsedata[0].products[i].fields.photo_set.length;j++)
 				{
 				if(j==0) 
-				   img10=parsedata[i].fields.photo_set[0].url_medium
+				   
+				   {img10=parsedata[0].products[i].fields.photo_set[0].url_medium
+				   console.log(parsedata[0].products[i].fields.id)}
 				  else if(j==1) 
-				   img11=parsedata[i].fields.photo_set[1].url_medium
-				 else   if(j==2) 
-				   img12=parsedata[i].fields.photo_set[2].url_medium
-				  else
-				   img13=parsedata[i].fields.photo_set[3].url_medium
+				  {
+				   img11=parsedata[0].products[i].fields.photo_set[1].url_medium
+				   }
+				 else   
+				   {
+				   img12=parsedata[0].products[i].fields.photo_set[2].url_medium
+				   console.log(parsedata[0].products[i].fields.id)}
+				
 				
 				
 				}
 				
-	  for(j=0;j<4;j++)
+	  for(j=0;j<parsedata[0].products[i+1].fields.photo_set.length;j++)
 				{
 				if(j==0) 
-				   img20=parsedata[i+1].fields.photo_set[0].url_medium
+				   img20=parsedata[0].products[i+1].fields.photo_set[0].url_medium
 				  else if(j==1) 
-				   img21=parsedata[i+1].fields.photo_set[1].url_medium
-				 else   if(j==2) 
-				   img22=parsedata[i+1].fields.photo_set[2].url_medium
-				  else
-				   img23=parsedata[i+1].fields.photo_set[3].url_medium
-				
+				  {  
+				  if(parsedata[0].products[i+1].fields.photo_set[1].url_medium=='undefined')
+				   img22="./assets/img/bag.jpg"
+				   else
+				  
+				   img21=parsedata[0].products[i+1].fields.photo_set[1].url_medium
+				   
+				   
+				   }
+				 else {  
+				  if(parsedata[0].products[i+1].fields.photo_set[2].url_medium=='undefined')
+				  img22="./assets/img/bag.jpg"
+				   else img22=parsedata[0].products[i+1].fields.photo_set[2].url_medium
+				 
 				
 				}
+				}
+*/
 
-
-		   if (parsedata[i].fields.price) {
+		   if (parsedata[0].products[i].fields.price) {
 			  
 			} else
-				parsedata[i].fields.price = 'N/A'
+				parsedata[0].products[i].fields.price = 'N/A'
 
-			if (parsedata[i].fields.brand) {} else parsedata[i].fields.brand = 'N/A'
+			if (parsedata[0].products[i].fields.brand) {} else parsedata[0].products[i].fields.brand = 'N/A'
 
-			if (parsedata[i + 1].fields.brand) {} else parsedata[i + 1].fields.brand = 'N/A'
+			if (parsedata[0].products[i + 1].fields.brand) {} else parsedata[i + 1].products[i + 1].fields.brand = 'N/A'
 
-			if (parsedata[i + 1].fields.price) {} else
-				parsedata[i + 1].fields.price = 'N/A'
+			if (parsedata[0].products[i + 1].fields.price) {} else
+				parsedata[0].products[i + 1].fields.price = 'N/A'
 
-			if (parsedata[i + 1].fields.description) {} else
-				parsedata[i + 1].fields.description = 'N/A'
-			if (parsedata[i].fields.description) {} else
-				parsedata[i].fields.description = 'N/A'
+			if (parsedata[0].products[i + 1].fields.description) {} else
+				parsedata[0].products[i + 1].fields.description = 'N/A'
+			if (parsedata[0].products[i].fields.description) {} else
+				parsedata[0].products[i].fields.description = 'N/A'
 			/*if (parsedata[i].fields.photo_set) {
 				for (var j = 0; j < 4; j++) {
 					imgArray.push(parsedata[i].fields.photo_set[j].url_medium);
@@ -291,80 +349,22 @@
 
 			$('.add-items').append('<div class="row ">\
 				<div class="col-xs-6 right-padding ">\
-				<div id="myCarousel' + i + '" class="carousel slide"  data-interval="false">\
-							<ol class="carousel-indicators">\
-								 <li data-target="#myCarousel' + i + '" data-slide-to="0" class="active"></li>\
-								<li data-target="#myCarousel' + i + '" data-slide-to="1"></li>\
-								<li data-target="#myCarousel' + i + '" data-slide-to="2"></li>\
-								<li data-target="#myCarousel' + i + '" data-slide-to="3"></li>\
-							</ol>\
-	  <div class="carousel-inner" role="listbox">\
-								<div class="item active">\
-									<img src="'+img10+'" class="img-responsive items" id="' + parsedata[i].fields.id + '">\
-								</div>\
-	<div class="item">\
-									<img src="'+img11+'" class="img-responsive items" id="' + parsedata[i].fields.id + '">\
-								</div>\
-								<div class="item">\
-									<img src="'+img12+'" class="img-responsive items" id="' + parsedata[i].fields.id + '">\
-								</div>\
-								<div class="item">\
-									<img src="'+img13+'" class="img-responsive items" id="' + parsedata[i].fields.id + '">\
-								</div>\
-							</div>\
-								<a class="left carousel-control" href="#myCarousel' + i + '" role="button" id="pauseprev" data-slide="prev">\
-						  <i class="icon-angle-left" style="color:red"></i>\
-						  <span class="sr-only">Previous</span>\
-						</a>\
-						<a class="right carousel-control" href="#myCarousel' + i + '" role="button" id="pausenext" data-slide="next">\
-						  <i class="icon-angle-right" style="color:red"></i>\
-						  <span class="sr-only">Next</span>\
-						</a>\
-						</div>\
-					 <p class="item-price">$' + parsedata[i].fields.price + '</p>\
+				<img src="'+img10+'" class="img-responsive items" id="' + parsedata[0].products[i].fields.id + '">\
+					 <p class="item-price">$' + parsedata[0].products[i].fields.price + '</p>\
 					<div class="row border-outline">\
 						<div class="col-xs-12 pic" >\
-							<p ><img src="./assets/img/like.png">' + parsedata[i].fields.brand + '\
-								<br> <span>' + parsedata[i].fields.description + '</span></p>\
+							<p ><img src="./assets/img/like.png">' + parsedata[0].products[i].fields.brand + '\
+								<br> <span>' + parsedata[0].products[i].fields.description + '</span></p>\
 						</div>\
 					</div>\
 				</div>\
 				<div class="col-xs-6 left-padding ">\
-				<div id="myCarousel' + (i + 1) + '" class="carousel slide"  data-interval="false">\
-							<ol class="carousel-indicators">\
-								 <li data-target="#myCarousel' + (i + 1) + '" data-slide-to="0" class="active"></li>\
-								<li data-target="#myCarousel' + (i + 1) + '" data-slide-to="1"></li>\
-								<li data-target="#myCarousel' + (i + 1) + '" data-slide-to="2"></li>\
-								<li data-target="#myCarousel' + (i + 1) + '" data-slide-to="3"></li>\
-							</ol>\
-	  <div class="carousel-inner" role="listbox">\
-								<div class="item active">\
-									<img src="'+img20+'" id="' + parsedata[i + 1].fields.id + '">\
-								</div>\
-	<div class="item">\
-									<img src="'+img21+'" class="img-responsive items" id="' + parsedata[i + 1].fields.id + '">\
-								</div>\
-								<div class="item">\
-									<img src="'+img22+'" class="img-responsive items" id="' + parsedata[i + 1].fields.id + '">\
-								</div>\
-								<div class="item">\
-									<img src="'+img23+'" class="img-responsive items" id="' + parsedata[i + 1].fields.id + '">\
-								</div>\
-							</div>\
-							<a class="left carousel-control" href="#myCarousel' + (i + 1) + '" role="button" id="pauseprev" data-slide="prev">\
-						  <i class="icon-angle-left" style="color:red"></i>\
-						  <span class="sr-only">Previous</span>\
-						</a>\
-						<a class="right carousel-control" href="#myCarousel' + (i + 1) + '" role="button" id="pausenext" data-slide="next">\
-						  <i class="icon-angle-right" style="color:red"></i>\
-						  <span class="sr-only">Next</span>\
-						</a>\
-						</div>\
-					<p class="item-price">$' + parsedata[i + 1].fields.price + '</p>\
+				<img src="'+img11+'" class="img-responsive items" id="' + parsedata[0].products[i+1].fields.id + '">\
+					<p class="item-price">$' + parsedata[0].products[i + 1].fields.price + '</p>\
 					<div class="row border-outline">\
 						<div class="col-xs-12 pic" >\
-							<p ><img src="./assets/img/like.png">' + parsedata[i + 1].fields.brand + '\
-								<br> <span>' + parsedata[i + 1].fields.description + '</span></p>\
+							<p ><img src="./assets/img/like.png">' + parsedata[0].products[i + 1].fields.brand + '\
+								<br> <span>' + parsedata[0].products[i + 1].fields.description + '</span></p>\
 						</div>\
 					</div>\
 				</div>\
@@ -376,6 +376,7 @@
 	}
 
 	function loadmore() {
+	hasnext=false;
 		page_no++;
 		//alert(page_no);
 		$.ajax({
@@ -396,16 +397,13 @@
 			dataType: "json",
 			data: {
 				"category": cat,
-				   page: 1 ,
+				   page: page_no ,
 					"show_by" :"10",
+					'type':type
 					//color : color
 
 			},
 			success: function(data) {
-
-				if (data.error)
-					alert(data.error);
-				// alert('data.error');
 
 				console.log('insidesucees');
 				var getitemdata = JSON.stringify(data);
@@ -416,8 +414,62 @@
 				console.log('calling load prof from windows ');
 				loadprof();
 
+//if(parsedata[0].paginator.has_next)
+//hasnext=true;
+		}	,
+
+			error: function(xhr, status, error) {
+				console.log(xhr);
+			}
+
+
+		}); //end of ajax call 
+
+
+
+	}
+	
+	function callforcolorfilter() {
+	
+		//alert('base on color ');
+		$.ajax({
+			type: 'GET',
+			url: "http://staging12.getpriceapp.com/item/list/",
+			beforeSend: function() {
+				console.log('ajaxstart');
+				$body.addClass("loading");
+			},
+			complete: function() {
+				//alert('ajaxstopp')
+				$body.removeClass("loading");
+				$('.carousel').carousel({
+					pause: 'true'
+				})
+			},
+			contentType: "application/json",
+			dataType: "json",
+			data: {
+				"category": cat,
+				   page: page_no ,
+					"show_by" :"10",
+					'type':type,
+					color : color
 
 			},
+			success: function(data) {
+
+			
+				var getitemdata = JSON.stringify(data);
+				//alert(JSON.stringify(data));
+				localStorage.setItem('itemdata', '');
+				localStorage.setItem('itemdata', getitemdata);
+				var parsedata = JSON.parse(localStorage.getItem('itemdata'));
+				console.log('calling load prof from windows ');
+				loadprofcolr();
+
+//if(parsedata[0].paginator.has_next)
+//hasnext=true;
+		}	,
 
 			error: function(xhr, status, error) {
 				console.log(xhr);
@@ -431,6 +483,7 @@
 	}
 	function makeAjaxcall()
 	{
+	  
 	$.ajax({
 				type: 'GET',
 				url: "http://staging12.getpriceapp.com/item/list/",
@@ -447,20 +500,30 @@
 				data: {
 					"category": cat,
 					"page": 1 ,
-					"show_by" :"10",
+					"show_by" :10,
+					type:type
 					//"color" : color
 				},
 				success: function(data) {
-					console.log('category sucees')
-					var getitemdata = JSON.stringify(data);
-					console.log(JSON.stringify(data));
+									var getitemdata = JSON.stringify(data);
 					localStorage.setItem('itemdata', '');
 					localStorage.setItem('itemdata', getitemdata);
 					var parsedata = JSON.parse(localStorage.getItem('itemdata'));
-					console.log('calling from category ssucess');
+					//alert(parsedata[0].products.length);
+					
+				if(parsedata[0].products.length==0)
+				   {
+				   $('.add-items').append('<p>..Sorry will be back soon ..</p>')}
+				   else{
+					console.log('category sucees')
+
+					console.log(JSON.stringify(data));
+				
+				
 					loadprof();
-
-
+}
+//if(parsedata[0].paginator.has_next)
+//hasnext=true;
 				},
 
 				error: function(xhr, status, error) {
@@ -471,4 +534,185 @@
 			}); //end of ajax call 
 
 
+	}
+	
+	
+	
+	function loadprofcolr()
+	{
+			var parsedata = JSON.parse(localStorage.getItem('itemdata'));
+        //alert(JSON.stringify(parsedata));
+		
+			$('.add-items').html(' ');
+		
+		
+
+		for (i = 0; i < parsedata[0].products.length; i += 2) {
+			
+			var img10, img11, img12, img13;
+			var img20, img21, img22, img23;
+			console.log("i:" + i);
+
+			
+			for(j=0;j<parsedata[0].products[i].fields.photo_set.length;j++)
+				{
+				if(j==0) 
+				   
+				   {img10=parsedata[0].products[i].fields.photo_set[0].url_medium
+				   console.log(parsedata[0].products[i].fields.id)}
+				  else if(j==1) 
+				  {
+				   img11=parsedata[0].products[i].fields.photo_set[1].url_medium
+				   }
+				 else   
+				   {
+				   img12=parsedata[0].products[i].fields.photo_set[2].url_medium
+				   console.log(parsedata[0].products[i].fields.id)}
+				
+				
+				
+				}
+				
+	  for(j=0;j<parsedata[0].products[i+1].fields.photo_set.length;j++)
+				{
+				if(j==0) 
+				   img20=parsedata[0].products[i+1].fields.photo_set[0].url_medium
+				  else if(j==1) 
+				  {  
+				  if(parsedata[0].products[i+1].fields.photo_set[1].url_medium=='undefined')
+				   img22="./assets/img/bag.jpg"
+				   else
+				  
+				   img21=parsedata[0].products[i+1].fields.photo_set[1].url_medium
+				   
+				   
+				   }
+				 else {  
+				  if(parsedata[0].products[i+1].fields.photo_set[2].url_medium=='undefined')
+				  img22="./assets/img/bag.jpg"
+				   else img22=parsedata[0].products[i+1].fields.photo_set[2].url_medium
+				 
+				
+				}
+				}
+
+
+		   if (parsedata[0].products[i].fields.price) {
+			  
+			} else
+				parsedata[0].products[i].fields.price = 'N/A'
+
+			if (parsedata[0].products[i].fields.brand) {} else parsedata[0].products[i].fields.brand = 'N/A'
+
+			if (parsedata[0].products[i + 1].fields.brand) {} else parsedata[i + 1].products[i + 1].fields.brand = 'N/A'
+
+			if (parsedata[0].products[i + 1].fields.price) {} else
+				parsedata[0].products[i + 1].fields.price = 'N/A'
+
+			if (parsedata[0].products[i + 1].fields.description) {} else
+				parsedata[0].products[i + 1].fields.description = 'N/A'
+			if (parsedata[0].products[i].fields.description) {} else
+				parsedata[0].products[i].fields.description = 'N/A'
+			/*if (parsedata[i].fields.photo_set) {
+				for (var j = 0; j < 4; j++) {
+					imgArray.push(parsedata[i].fields.photo_set[j].url_medium);
+				}
+				img10 = imgArray[0] || "./assets/img/bag.jpg";
+				img11 = imgArray[1] || "./assets/img/bag.jpg";
+				img12 = imgArray[2] || "./assets/img/bag.jpg";
+				img13 = imgArray[3] || "./assets/img/bag.jpg";
+				imgArray.length = 0;
+			}
+			
+			if (parsedata[i + 1].fields.photo_set) {
+				console.log()
+				for (var j = 0; j < 4; j++) {
+					imgArray.push(parsedata[i+1].fields.photo_set[j].url_medium)
+				}
+				img20 = imgArray[0] || "./assets/img/bag.jpg";
+				img21 = imgArray[1] || "./assets/img/bag.jpg";
+				img22 = imgArray[2] || "./assets/img/bag.jpg";
+				img23 = imgArray[3] || "./assets/img/bag.jpg";
+				imgArray.length = 0;
+			}
+			*/
+	
+
+			$('.add-items').append('<div class="row ">\
+				<div class="col-xs-6 right-padding ">\
+				<div id="myCarousel' + i + '" class="carousel slide"  data-interval="false">\
+							<ol class="carousel-indicators">\
+								 <li data-target="#myCarousel' + i + '" data-slide-to="0" class="active"></li>\
+								<li data-target="#myCarousel' + i + '" data-slide-to="1"></li>\
+								<li data-target="#myCarousel' + i + '" data-slide-to="2"></li>\
+							</ol>\
+	  <div class="carousel-inner" role="listbox">\
+								<div class="item active">\
+									<img src="'+img10+'" class="img-responsive items" id="' + parsedata[0].products[i].fields.id + '">\
+								</div>\
+	<div class="item">\
+									<img src="'+img11+'" class="img-responsive items" id="' + parsedata[0].products[i].fields.id + '">\
+								</div>\
+								<div class="item">\
+									<img src="'+img12+'" class="img-responsive items" id="' + parsedata[0].products[i].fields.id + '">\
+								</div>\
+							</div>\
+								<a class="left carousel-control" href="#myCarousel' + i + '" role="button" id="pauseprev" data-slide="prev">\
+						  <i class="icon-angle-left" style="color:red"></i>\
+						  <span class="sr-only">Previous</span>\
+						</a>\
+						<a class="right carousel-control" href="#myCarousel' + i + '" role="button" id="pausenext" data-slide="next">\
+						  <i class="icon-angle-right" style="color:red"></i>\
+						  <span class="sr-only">Next</span>\
+						</a>\
+						</div>\
+					 <p class="item-price">$' + parsedata[0].products[i].fields.price + '</p>\
+					<div class="row border-outline">\
+						<div class="col-xs-12 pic" >\
+							<p ><img src="./assets/img/like.png">' + parsedata[0].products[i].fields.brand + '\
+								<br> <span>' + parsedata[0].products[i].fields.description + '</span></p>\
+						</div>\
+					</div>\
+				</div>\
+				<div class="col-xs-6 left-padding ">\
+				<div id="myCarousel' + (i + 1) + '" class="carousel slide"  data-interval="false">\
+							<ol class="carousel-indicators">\
+								 <li data-target="#myCarousel' + (i + 1) + '" data-slide-to="0" class="active"></li>\
+								<li data-target="#myCarousel' + (i + 1) + '" data-slide-to="1"></li>\
+								<li data-target="#myCarousel' + (i + 1) + '" data-slide-to="2"></li>\
+							</ol>\
+	  <div class="carousel-inner" role="listbox">\
+								<div class="item active">\
+									<img src="'+img20+'" id="' + parsedata[0].products[i + 1].fields.id + '">\
+								</div>\
+	<div class="item">\
+									<img src="'+img21+'" class="img-responsive items" id="' + parsedata[0].products[i + 1].fields.id + '">\
+								</div>\
+								<div class="item">\
+									<img src="'+img22+'" class="img-responsive items" id="' + parsedata[0].products[i + 1].fields.id + '">\
+								</div>\
+							</div>\
+							<a class="left carousel-control" href="#myCarousel' + (i + 1) + '" role="button" id="pauseprev" data-slide="prev">\
+						  <i class="icon-angle-left" style="color:red"></i>\
+						  <span class="sr-only">Previous</span>\
+						</a>\
+						<a class="right carousel-control" href="#myCarousel' + (i + 1) + '" role="button" id="pausenext" data-slide="next">\
+						  <i class="icon-angle-right" style="color:red"></i>\
+						  <span class="sr-only">Next</span>\
+						</a>\
+						</div>\
+					<p class="item-price">$' + parsedata[0].products[i + 1].fields.price + '</p>\
+					<div class="row border-outline">\
+						<div class="col-xs-12 pic" >\
+							<p ><img src="./assets/img/like.png">' + parsedata[0].products[i + 1].fields.brand + '\
+								<br> <span>' + parsedata[0].products[i + 1].fields.description + '</span></p>\
+						</div>\
+					</div>\
+				</div>\
+			</div>');
+		}
+
+
+	
+	
 	}

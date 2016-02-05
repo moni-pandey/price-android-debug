@@ -119,30 +119,30 @@
 								</div>
 								<div style="height:350px; width:60px;margin-top:30px">
 	<div class="sp-hue border-colorpicker">
-										<div onclick="settext('Color 1')" style="height:5%"></div>
-										<div onclick="settext('Color 2')" style="height:5%"></div>
-										<div onclick="settext('Color 3')" style="height:5%"></div>
-										<div onclick="settext('Color 4')" style="height:5%"></div>
-										<div onclick="settext('Color 5')" style="height:5%"></div>
-										<div onclick="settext('Color 6')" style="height:5%"></div>
-										<div onclick="settext('Color 7')" style="height:5%"></div>
-										<div onclick="settext('Color 8')" style="height:5%"></div>
-										<div onclick="settext('Color 9')" style="height:5%"></div>
-										<div onclick="settext('Color 10')" style="height:5%"></div>
-										<div onclick="settext('Color 11')" style="height:5%"></div>
-										<div onclick="settext('Color 12')" style="height:5%"></div>
-										<div onclick="settext('Color 13')" style="height:5%"></div>
-										<div onclick="settext('Color 14')" style="height:5%"></div>
-										<div onclick="settext('Color 15')" style="height:5%"></div>
-										<div onclick="settext('Color 16')" style="height:5%"></div>
-										<div onclick="settext('Color 17')" style="height:5%"></div>
-										<div onclick="settext('Color 18')" style="height:5%"></div>
-										<div onclick="settext('Color 19')" style="height:5%"></div>
-										<div onclick="settext('Color 20')" style="height:5%"></div>
+										<div onclick="settext('orange')"  id='c1' style="height:5%"></div>
+										<div onclick="settext('orange')" id='c2' style="height:5%"></div>
+										<div onclick="settext('orange')" id='c3' style="height:5%"></div>
+										<div onclick="settext('green')" id='c4' style="height:5%"></div>
+										<div onclick="settext('green')" id='c5' style="height:5%"></div>
+										<div onclick="settext('green')" id='c6' style="height:5%"></div>
+										<div onclick="settext('green')" id='c7'style="height:5%"></div>
+										<div onclick="settext('green')" id='c8'style="height:5%"></div>
+										<div onclick="settext('green')" id='c9'style="height:5%"></div>
+										<div onclick="settext('blue')" id='c10'  style="height:5%"></div>
+										<div onclick="settext('blue')" id='c11'style="height:5%"></div>
+										<div onclick="settext('blue')" id='c12' style="height:5%"></div>
+										<div onclick="settext('blue')" id='c13' style="height:5%"></div>
+										<div onclick="settext('blue')" id='c14' style="height:5%"></div>
+										<div onclick="settext('blue')" id='c15' style="height:5%"></div>
+										<div onclick="settext('blue')" id='c16' style="height:5%"></div>
+										<div onclick="settext('pink ,blue')" id='c17' style="height:5%"></div>
+										<div onclick="settext('pink')"  id='c18' style="height:5%"></div>
+										<div onclick="settext('red')" id='c19' style="height:5%"></div>
+										<div onclick="settext('red')" id='c20' style="height:5%"></div>
 
 									</div>
 								</div>
-							</div>	 
+							</div>		 
 						</div>
 					</div>
 					<div class="col-xs-2 column-width">
@@ -196,13 +196,14 @@
 		<script type="text/javascript" src="js/cart_Page.js"></script>
 		<script type="text/javascript" src="js/index.js"></script>
 		</body>
-					<script>
-
-			$('#clickforcolor').click(function (e) {
-				//alert(document.getElementById("divColorPicker").style.display)
-				document.getElementById("divColorPicker").style.display = "";
-				//alert(document.getElementById("divColorPicker").style.display)
-			});
+<script>
+ $('#clickforcolor').click(function (e) {
+//alert(document.getElementById("divColorPicker").style.display)
+if(document.getElementById("divColorPicker").style.display=="")
+document.getElementById("divColorPicker").style.display = "none";
+else
+document.getElementById("divColorPicker").style.display = "";
+});
 
 			$("#openpickerlink").spectrum({
 			    color: "#dd3333",
@@ -240,4 +241,5 @@
 			    border:solid 1px red;
 			}
 		</style>
+
 	</html>
