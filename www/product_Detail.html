@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang=en>
+	<head>
+		<title>Product Detail Page</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no">
+		<link href="css/bootstrap.min.css" rel="stylesheet">
+		<link href="css/styles.css" rel="stylesheet">
+		
+	</head>
+	<body>
+	    
+		<div class="container-fluid">
+		    <div class="row" style="margin-top:40px; padding-left:10px; padding-right:15px;">
+			    <div class="col-xs-3">
+				    <p style="font:10px Roboto; margin-left:5px ">RETAIL </p>
+					<p style="font:17px Roboto; text-decoration:line-through; margin-top:-12px " id='originalprice'>$4,000</p>
+				</div>
+				<div class="col-xs-6">
+				    <p style="font:38px Roboto; font-weight:bold; color:#000; text-align:center; margin-top:-8px" id='price_sold'>$2,020</p>
+				</div>
+				<div class="col-xs-3"> 
+				    <p style="font:10px Roboto; text-align:right; margin-right:5px">SAVED </p>
+					<p style="font:17px Roboto; text-decoration:line-through; margin-top:-12px; text-align:right; margin-right:2px" id='amount_saved'>$1,980</p>
+				</div>
+			</div>
+		    <div class="row" style="padding-left:10px; padding-right:10px;">
+			    <div class="col-xs-12" style="margin-top:-5px">
+				    <div id="myCarousel" class="carousel slide" data-ride="carousel">
+                        <ol class="carousel-indicators top-margin-indicators">
+                             <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                            <li data-target="#myCarousel" data-slide-to="1"></li>
+                            <li data-target="#myCarousel" data-slide-to="2"></li>
+                            <li data-target="#myCarousel" data-slide-to="3"></li>
+                        </ol>
+
+                        <div class="carousel-inner product-pics" role="listbox">
+                            <div class="item active">
+                                <img src="./assets/img/bag.jpg" class="img-responsive">
+                            </div>
+
+                            <div class="item">
+                                <img src="./assets/img/bag.jpg" class="img-responsive">
+                            </div>
+                            
+                            <div class="item">
+                                <img src="./assets/img/bag.jpg" class="img-responsive">
+                            </div>
+							
+							<div class="item">
+                                <img src="./assets/img/bag.jpg" class="img-responsive">
+                            </div>
+                        </div>
+                    </div>
+				</div>
+			</div>
+			
+			<div class="row" style="margin-top:25px;">
+			    <div class="col-xs-12" style="padding-right:0;">
+	                <p class="product-name">CHLO&Eacute </p>
+				    <p class="product-description">MARCIE MEDIUM SATCHEL </p>
+					    <div style="display:inline-block; margin-top:-15px;margin-left:14px; ">
+						    <img src="./assets/img/Black-star.png"> <img src="./assets/img/Black-star.png"> <img src="./assets/img/Black-star.png"> <img src="./assets/img/Black-star.png"> <img src="./assets/img/B&W-star.png"> 
+							<p class="product-rating">Free shipping with Amazon Prime</p>
+					    </div>
+				</div>
+			</div>
+			<div class="row" style="margin-top:15px; margin-bottom:13px;">
+			    <div class="col-xs-3" style="padding-right:4px">
+				    <button class="btn btn-block back-arrow-button" type="button"><img src="./assets/img/play.png"></button>
+				</div>
+				<div class="col-xs-9" style="padding-left:5px">
+				    <button class="btn btn-block add-product-cart" type="button"><img src="./assets/img/Cart-big.png"></button>
+				</div>
+			</div>
+			<div class="row" style="margin-bottom:13px;">
+			    <div class="col-xs-12">
+				    <button class="btn btn-block choices-button" type="button">CHOICES<img src="./assets/img/Down-arrow.png"></button>
+				</div>
+			</div>
+			<div class="row" style="margin-bottom:13px;">
+			    <div class="col-xs-4" style="padding-right:6px">
+				    <button class="btn btn-block share-btn" type="button"><img src="./assets/img/share.png"></button>
+				</div>
+				<div class="col-xs-8" style="padding-left:6px">
+				    <button class="btn btn-block wishlist-btn" type="button">WISH LIST</button>
+				</div>
+			</div>
+			
+			<div class="row">
+			    <div class="tabbable full-width-tabs">
+                    <ul class="nav nav-tabs product-details">
+                        <li class="active"><a href="#tab-one" data-toggle="tab">DETAILS 
+                        <li><a href="#tab-two" data-toggle="tab">BROWSE SIMILAR </a></li>
+						<li><a href="#tab-three" data-toggle="tab">REVIEWS </a></li>
+						<li><a href="#tab-four" data-toggle="tab">RETURNS </a></li>
+                    </ul>
+					<div class="indicator">
+					    <img src="./assets/img/white.png" class="indicate-for-detail"> <img src="./assets/img/white.png" class="indicate-for-browse-similar"> <img src="./assets/img/white.png" class="indicate-for-review"> <img src="./assets/img/white.png" class="indicate-for-return">
+					</div>
+                </div>
+				<div class="tab-content">
+                    <div class="tab-pane fade in active" id="tab-one">
+					    <p class="item-description">Lorem ipsum dolor sit amet, consectetuer adipisc elit. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</p>
+						
+						<div class="row detail-dimension-width">
+						    <div class="col-xs-7">
+							    <p>DETAILS</p>
+								<h6>Lorem Ipsum</h6>
+								<h6>Lorem Ipsum</h6>
+								<h6>Lorem Ipsum</h6>
+								<h6>Lorem Ipsum</h6>
+								<h6>Lorem Ipsum</h6>
+							</div>
+							<div class="col-xs-5">
+							    <p>DIMENSIONS</p>
+								<h6>Width 14in</h6>
+                                <h6>Width 14in</h6>
+                                <h6>Width 14in</h6>								
+							</div>
+						</div>
+					</div>
+					
+					<div class="tab-pane fade" id="tab-two">
+					    <div class="row zero-side-margin">
+			                <div class="col-xs-6 right-padding">
+				                <img src="./assets/img/bag.jpg" class="img-responsive items">
+					             <p class="item-price">$1,350</p>
+					
+					            <div class="row border-outline">
+			                        <div class="col-xs-12">
+						                <p><img src="./assets/img/like.jpg">CHLO&Eacute <br> <span>DREW LEATHER BAG </span></p>
+						            </div>
+			                    </div>
+				            </div>
+				            <div class="col-xs-6 left-padding">
+				                <img src="./assets/img/bag.jpg" class="img-responsive items">
+					             <p class="item-price">$1,350</p>
+					
+					            <div class="row border-outline">
+			                        <div class="col-xs-12">
+						                <p><img src="./assets/img/like.jpg">CHLO&Eacute <br> <span>DREW LEATHER BAG </span></p>
+						            </div>
+			                    </div>
+				            </div>
+			            </div>
+						
+						<div class="row zero-side-margin">
+			                <div class="col-xs-6 right-padding">
+				                <img src="./assets/img/bag.jpg" class="img-responsive items">
+					             <p class="item-price">$1,350</p>
+					
+					            <div class="row border-outline">
+			                        <div class="col-xs-12">
+						                <p><img src="./assets/img/like.jpg">CHLO&Eacute <br> <span>DREW LEATHER BAG </span></p>
+						            </div>
+			                    </div>
+				            </div>
+				            <div class="col-xs-6 left-padding">
+				                <img src="./assets/img/bag.jpg" class="img-responsive items">
+					             <p class="item-price">$1,350</p>
+					
+					            <div class="row border-outline">
+			                        <div class="col-xs-12">
+						                <p><img src="./assets/img/like.jpg">CHLO&Eacute <br> <span>DREW LEATHER BAG </span></p>
+						            </div>
+			                    </div>
+				            </div>
+			            </div>
+					</div>
+		        
+				</div>
+			</div>
+		</div>
+		<div class="modal"><!-- Place at bottom of page --></div> 
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+		<script type="text/javascript" src="js/lib/bootstrap/bootstrap.min.js"></script>
+		<script type="text/javascript" src="js/product_details.js"></script>
+	</body>
+</html>
