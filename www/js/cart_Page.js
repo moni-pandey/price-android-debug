@@ -157,6 +157,8 @@
 			$(".dropdown-menu").on("click", "li", function(event) {
 				console.log(event.target.id)
 				var id = event.target.id;
+				
+				
 				categoryitemclicked = true
 				page_no = 1;
 				if (userdata.fbGender == 'female') {
@@ -164,21 +166,65 @@
 					if (id == 'clothingimg') {
 						cat = 'clothing'
 						console.log(cat);
+					 $('#clothingimg').attr('src','./assets/img/dress-gray.png');
+					 $('#sunglassimg').attr('src','./assets/img/Glass.png');
+					 $('#necklaceimg').attr('src','./assets/img/ring.png');
+					 	$('#purseimg').attr('src','./assets/img/Bag.png');
+						$('#sandleimg').attr('src','./assets/img/sandal.png');
+						$('#perfectimg').attr('src','./assets/img/Watch.png');
+					
 					} else if (id == 'sunglassimg') {
 						cat = 'sunglasses'
 						console.log(cat);
+						$('#sunglassimg').attr('src','./assets/img/Glass-gray.png');
+						$('#clothingimg').attr('src','./assets/img/dress.png');
+				
+					 $('#necklaceimg').attr('src','./assets/img/ring.png');
+					 	$('#purseimg').attr('src','./assets/img/Bag.png');
+						$('#sandleimg').attr('src','./assets/img/sandal.png');
+						$('#perfectimg').attr('src','./assets/img/Watch.png');
 					} else if (id == 'necklaceimg') {
 						cat = 'jewelry'
 						console.log(cat);
+						$('#necklaceimg').attr('src','./assets/img/ring-gray.png');
+						$('#sunglassimg').attr('src','./assets/img/Glass.png');
+						$('#clothingimg').attr('src','./assets/img/dress.png');
+				
+					
+					 	$('#purseimg').attr('src','./assets/img/Bag.png');
+						$('#sandleimg').attr('src','./assets/img/sandal.png');
+						$('#perfectimg').attr('src','./assets/img/Watch.png');
+						
 					} else if (id == 'purseimg') {
 						cat = 'bags'
 						console.log(cat);
+						$('#purseimg').attr('src','./assets/img/Bag-gray.png');
+						$('#necklaceimg').attr('src','./assets/img/ring.png');
+						$('#sunglassimg').attr('src','./assets/img/Glass.png');
+						$('#clothingimg').attr('src','./assets/img/dress.png');
+				
+						$('#sandleimg').attr('src','./assets/img/sandal.png');
+						$('#perfectimg').attr('src','./assets/img/Watch.png');
 					}else if (id == 'sandleimg') {
 						cat = 'shoes'
 						console.log(cat);
+						$('#sandleimg').attr('src','./assets/img/sandal-gray.png');
+							$('#purseimg').attr('src','./assets/img/Bag.png');
+						$('#necklaceimg').attr('src','./assets/img/ring.png');
+						$('#sunglassimg').attr('src','./assets/img/Glass.png');
+						$('#clothingimg').attr('src','./assets/img/dress.png');
+				
+						$('#perfectimg').attr('src','./assets/img/Watch.png');
 					} else {
 						cat = "watches";
 						console.log(cat);
+						$('#perfectimg').attr('src','./assets/img/Watch_gray.png');
+							$('#sandleimg').attr('src','./assets/img/sandal.png');
+							$('#purseimg').attr('src','./assets/img/Bag.png');
+						$('#necklaceimg').attr('src','./assets/img/ring.png');
+						$('#sunglassimg').attr('src','./assets/img/Glass.png');
+						$('#clothingimg').attr('src','./assets/img/dress.png');
+				
 					}
 				} 
 				
@@ -188,18 +234,47 @@
 					if (id == 'clothingimg') {
 						cat = 'clothing'
 						console.log(cat);
+						$('#clothingimg').attr('src','./assets/img/Shirt_gray.png');
+						$('#watchimg').attr('src','./assets/img/Watch_Black.png');
+						$('#gadgetimg').attr('src','./assets/img/headphone_black.png');
+						$('#cycleimg').attr('src','./assets/img/tent_black.png');
+						$('#sunglassimg').attr('src','./assets/img/glass_black.png');
 					} else if (id == 'watchimg') {
 						cat = 'watches'
 						console.log(cat);
+						$('#watchimg').attr('src','./assets/img/Watch_gray.png');
+						$('#clothingimg').attr('src','./assets/img/Shirt_Black.png');
+						
+						$('#gadgetimg').attr('src','./assets/img/headphone_black.png');
+						$('#cycleimg').attr('src','./assets/img/tent_black.png');
+						$('#sunglassimg').attr('src','./assets/img/glass_black.png');
 					} else if (id == 'gadgetimg') {
 						cat = 'electronics'
 						console.log(cat);
+						$('#gadgetimg').attr('src','./assets/img/headphone_gray.png');
+						$('#clothingimg').attr('src','./assets/img/Shirt_Black.png');
+						$('#watchimg').attr('src','./assets/img/Watch_Black.png');
+						$('#gadgetimg').attr('src','./assets/img/headphone_black.png');
+						$('#cycleimg').attr('src','./assets/img/tent_black.png');
+				
 					} else if (id == 'cycleimg') {
 						cat = 'outdoogear'
 						console.log(cat);
+						$('#cycleimg').attr('src','./assets/img/tent_gray.png');
+						$('#clothingimg').attr('src','./assets/img/Shirt_Black.png');
+						$('#watchimg').attr('src','./assets/img/Watch_Black.png');
+						$('#gadgetimg').attr('src','./assets/img/headphone_black.png');
+						
+						$('#sunglassimg').attr('src','./assets/img/glass_black.png');
 					} else {
 						cat = 'sunglasses';
 						console.log(cat);
+						$('#sunglassimg').attr('src','./assets/img/glass_gray.png');
+						$('#clothingimg').attr('src','./assets/img/Shirt_Black.png');
+						$('#watchimg').attr('src','./assets/img/Watch_Black.png');
+						$('#gadgetimg').attr('src','./assets/img/headphone_black.png');
+						$('#cycleimg').attr('src','./assets/img/tent_black.png');
+					
 					}
 
 
