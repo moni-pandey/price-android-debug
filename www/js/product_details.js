@@ -128,7 +128,7 @@
 						 </div>');
 	
 	}else if(photo_set_length==4) {
-	alert(photo_set_length);
+	//alert(photo_set_length);
 	
 		  var i1 = parsedetails.photo_set[0].url_large;
 		 
