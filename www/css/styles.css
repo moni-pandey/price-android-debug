@@ -66,8 +66,17 @@
 		width
 	} 
 .i1 {
-width : 200px;
-height : 200px
+height : 200px;
+width : 300px;
+
+}
+
+
+.img2{
+  max-width:100%; 
+  max-height:100%;
+  margin:auto;
+  display:block;
 }
 
 	.item-price   {
@@ -1091,6 +1100,10 @@ height : 200px
 
 	.product-pics img   {
 	  border-radius:10px;
+	  max-width:100%; 
+  max-height:100%;
+  margin:auto;
+  display:block;
 	}
 
 	.product-name   {
