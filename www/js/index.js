@@ -82,6 +82,7 @@
 		fbLoginSuccess: function(response) {
 			// Success callback of Facebook Plugin
 			//alert(JSON.stringify(response));
+		console.log(JSON.stringify(response));
 			if (!response.authResponse) {
 				// No Auth response has come
 				loginMethods.fbLoginError("Cannot find the authResponse");
@@ -90,7 +91,7 @@
 			var authResponse = response.authResponse; // Save the authResponse
 			loginMethods.getFacebookProfileInfo(authResponse).then(function(profileInfo) {
 			if(profileInfo.email)
-			{ var p= profileInfo.id+'@logic.com'
+			{ var p= profileInfo.id+'@logic.com';
 			console.log(p)}
 			else
 			{
@@ -110,7 +111,7 @@
 			{
 			profileInfo.gender='unknown';
 			console.log(profileInfo.email)}
-			//alert(JSON.stringify(profileInfo));
+			console.log(JSON.stringify(profileInfo));
 				// Get the promise and save the response in LocalStorage
 				loginMethods.setUserInfo({
 					authResponse: authResponse,
