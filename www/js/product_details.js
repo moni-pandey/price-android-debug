@@ -2,8 +2,10 @@
 	//alert(localStorage.getItem('productid'));
 
 	url=''
+	//this is the image id from  previous page , setting it to pk  
 	var pk =localStorage.getItem('productid')
 	 $(document).bind("deviceready", function() {
+	 
 				document.addEventListener("backbutton", function() {
 							
 							localStorage.setItem('productid',' ');
@@ -46,6 +48,7 @@
 					 localStorage.setItem('itemdetails' ,getitemdetails);
 					 var parsedetails =JSON.parse(localStorage.getItem('itemdetails'));
 					 //alert(parsedetails);
+					 //setting   product detauils UI
 					 loadprof();
 					
 		
@@ -80,6 +83,8 @@
 	else 
 	parsedetails.price='N/A';
 	
+	
+	// they are returning 0-5 legth of photo_set object so we need to handle all
 	var photo_set_length = parsedetails.photo_set.length 
 	//alert(photo_set_length)
 	if(photo_set_length==1) 
@@ -166,23 +171,20 @@
                              <li data-target="#myCarousel" data-slide-to="0" class="active"></li>\
                              <li data-target="#myCarousel" data-slide-to="1" ></li>\
                              <li data-target="#myCarousel" data-slide-to="2" </li>\
-                             <li data-target="#myCarousel" data-slide-to="3" </li>\
-                             <li data-target="#myCarousel" data-slide-to="4" </li>\
                           </ol> <div class="carousel-inner product-pics" role="listbox">\
 						 <div class="item  i1 active">\
                       <img src="'+i1+'" class="img-responsive"></div>\
 					  <div class="item i1">\
                       <img src="'+i2+'" class="img-responsive"></div>\
 					  <div class="item i1">\
-                      <img src="'+i3+'" class="img-responsive"></div><div class="item i1"></div>\
-					  <div class="item i1">\
-                      <img src="'+i4+'" class="img-responsive"></div><div class="item i1"></div>\
-					  <div class="item i1">\
+                      <img src="'+i3+'" class="img-responsive"></div><div class="item i1"></div><div class="item i1">\
+                      <img src="'+i4+'" class="img-responsive"></div><div class="item i1"></div><div class="item i1">\
                       <img src="'+i5+'" class="img-responsive"></div><div class="item i1"></div>\
                      </div>');
 	} else
 	{
-	console.log('no image ');
+	//if no image found 
+console.log('no image ');
 		var i1 = "./assets/img/no_img.png";
 	$('#myCarousel').append('<ol class="carousel-indicators top-margin-indicators">\
                              <li data-target="#myCarousel" data-slide-to="0" class="active"></li>\
@@ -192,7 +194,6 @@
 						 </div>\
 						 </div>');
 	
-	}
 
 
 	/*if(parsedetails.photo_set[2])

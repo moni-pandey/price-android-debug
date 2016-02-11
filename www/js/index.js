@@ -1,16 +1,42 @@
+//attach fastclick
+var s = document.createElement("script");
+s.type = "text/javascript";
+s.src = "js/lib/fastclick.js";
+$("head").append(s);
+$(function() {
+    Origami.fastclick.FastClick.attach(document.body);
+});
 
+//disable double tap
+(function($) {
+  var IS_IOS = /iphone|ipad/i.test(navigator.userAgent);
+  $.fn.nodoubletapzoom = function() {
+    if (IS_IOS)
+      $(this).bind('touchstart', function preventZoom(e) {
+        var t2 = e.timeStamp
+          , t1 = $(this).data('lastTouch') || t2
+          , dt = t2 - t1
+          , fingers = e.originalEvent.touches.length;
+        $(this).data('lastTouch', t2);
+        if (!dt || dt > 500 || fingers > 1) return; // not double-tap
 
+        e.preventDefault(); // double tap - prevent the zoom
+        // also synthesize click events we just swallowed up
+        $(this).trigger('click').trigger('click');
+      });
+  };
+})(jQuery);
 
 	var loginMethods = {
 		/*Landing page methods*/
 		getFacebookProfileInfo: function(authResponse) {
+		console.log('getinfo');
 			// To get the profile Info
 			var fbInfo = $.Deferred();
 			facebookConnectPlugin.api('/me?fields=email,gender,name,age_range,location&access_token=' + authResponse.accessToken, null,
 				function(response) {
 					console.log(response);
-				
-					 fbInfo.resolve(response);
+				    fbInfo.resolve(response);
 				},
 				function(response) {
 					console.log(response);
@@ -18,17 +44,19 @@
 				}
 			);
 			return fbInfo.promise();
+			
 		},
 		signinViaFacebook: function() {
-			// Facebook based signin
-			console.log("signinViaFacebook called");
+		    
 			facebookConnectPlugin.getLoginStatus(function(success) {
 				if (success.status === 'connected') {
 					// User has already Logged in
 					console.log('getLoginStatus', success.status);
 					var fbLocalData = loginMethods.getUserInfo();
 					if (!fbLocalData.fbUserID) {
+					
 						loginMethods.getFacebookProfileInfo(success.authResponse).then(function(profileInfo) {
+						//var authResponse = response.authResponse;
 							loginMethods.setUserInfo({
 								authResponse: authResponse,
 								fbUserID: profileInfo.id,
@@ -39,13 +67,14 @@
 								fbLocation :profileInfo.location.name
 								
 							});
+							//localStorage.setItem('auth',authResponse.accessToken);
 
 						}, function(fail) {
 							// Fail get profile info
 							console.log('profile info fail', fail);
 						})
 					} else {  
-					alert("You have already Logged in");
+					//alert("You have already Logged in");
 					 var userdata = loginMethods.getUserInfo();
 					 
 					if(userdata.fbGender == 'female')
@@ -68,6 +97,7 @@
 				// Fail get profile info
 				console.log('profile info fail', error);
 			});
+			
 		},
 		setUserInfo: function(user_data) {
 			// To save the User data in LocalStorage
@@ -80,22 +110,27 @@
 			return JSON.parse(window.localStorage.fbUserData || '{}');
 		},
 		fbLoginSuccess: function(response) {
-			// Success callback of Facebook Plugin
-			//alert(JSON.stringify(response));
-		console.log(JSON.stringify(response));
+			
 			if (!response.authResponse) {
 				// No Auth response has come
 				loginMethods.fbLoginError("Cannot find the authResponse");
 				return;
 			}
+			
+			
 			var authResponse = response.authResponse; // Save the authResponse
+			//alert(JSON.stringify(authResponse));
+			localStorage.setItem('auth',authResponse.accessToken);
+			//alert(localStorage.getItem('auth'));
+			//alert(authResponse.accessToken);
+			
 			loginMethods.getFacebookProfileInfo(authResponse).then(function(profileInfo) {
 			if(profileInfo.email)
-			{ var p= profileInfo.id+'@logic.com';
+			{ var p=profileInfo.id+'@logic.com';
 			console.log(p)}
 			else
 			{
-			profileInfo.email=profileInfo.id+'@logic.com';
+			profileInfo.email = profileInfo.id+'@logic.com';
 			console.log(profileInfo.email)}
 			
 			if(profileInfo.gender)
@@ -109,10 +144,10 @@
 			console.log('oki')}
 			else
 			{
-			profileInfo.gender='unknown';
-			console.log(profileInfo.email)}
-			console.log(JSON.stringify(profileInfo));
-				// Get the promise and save the response in LocalStorage
+			profileInfo.location='unknown';
+			console.log(profileInfo.email)
+			}
+		// Get the promise and save the response in LocalStorage
 				loginMethods.setUserInfo({
 					authResponse: authResponse,
 					fbUserID: profileInfo.id,
@@ -123,32 +158,89 @@
 					fbLocation :profileInfo.location.name
 								
 				});
-				
+			//alert(profileInfo);
+			localStorage.setItem('name',profileInfo.name);
+			localStorage.setItem('email',profileInfo.email);
+			localStorage.setItem('id',profileInfo.id);
+			localStorage.setItem('type',profileInfo.gender);
 		mixpanel.identify(profileInfo.email);
-				
-				mixpanel.people.set({
+	
+		mixpanel.people.set({
 			  "$email": profileInfo.email,  
 			  "$last_login": new Date(), 
 			  "$name": profileInfo.name
 				   
 	});
 	mixpanel.people.increment({ "gender": profileInfo.gender});
-
-				
-					if(profileInfo.gender=='female')
-				   {
-					 //female category code 
-					 //window.location='cart_page_male.html'
-					 window.location='cart_Page.html'
-				   }
-				   else
-					{
-					  window.location='cart_page_male.html'
-					}
-				
-			})
+});
+	console.log('fbapi')
+		loginMethods.fbApiCall();	
+			
 		},
 		fbLoginError: function(error) {
 			console.log('fbLoginError:' + error);
-		}
+		},
+		fbApiCall : function() {
+		      var userData =   loginMethods.getUserInfo();
+			  console.log('fbapi');
+			           //alert(localStorage.getItem('email'))
+						//alert(localStorage.getItem('name')) 
+						//alert(localStorage.getItem('id'))
+			 
+			      var credentials = {
+                  "access_token":localStorage.getItem('auth'),
+					     "backend":'facebook',
+						"email": localStorage.getItem('email'),
+						"name": localStorage.getItem('name') ,
+						"user_id": localStorage.getItem('id')
+                }
+		     $.ajax({
+			      
+			        url: "http://staging12.getpriceapp.com/klutter/ajax-auth/facebook/",
+			          type: "POST",
+                    dataType: "json",
+			        data: credentials,
+			        success: function(data) {
+
+
+			            var getitemdata = JSON.stringify(data);
+						//alert(JSON.stringify(data));
+			            if(data.token)
+						{ 
+						localStorage.setItem('token',data.token);
+						localStorage.setItem('tokenid',data.id);
+						console.log(data.token );
+						if(localStorage.getItem('type')=='female')
+						   {
+							 window.location='cart_Page.html'
+						   }
+						   else
+							{
+							  window.location='cart_page_male.html'
+							}
+						
+						
+						}
+						else
+						{
+						console.log('not logged at backend');
+						}
+						
+						
+						
+						
+						
+			          
+			        },
+
+			        error: function(xhr, status, error) {
+			            console.log(xhr);
+			           // alert(xhr.status);
+			            //alert(error);
+			            //alert(xhr.responseText);
+			        }
+
+
+			    }); //end of ajax call 
+}
 	};

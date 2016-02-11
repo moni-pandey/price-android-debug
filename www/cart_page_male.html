@@ -1,172 +1,190 @@
-	<!DOCTYPE html>
-	<html lang=en>
-	<head>
-		<title>Cart Page</title>
-		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no">
-		<script type="text/javascript" src="js/lib/jquery/jquery.min.js"></script>
-		<script type="text/javascript" src="js/lib/bootstrap/bootstrap.min.js"></script>
-		<link href="css/bootstrap.min.css" rel="stylesheet">
-		<link href="css/spectrum.css" rel="stylesheet">
-		<link href="css/styles.css" rel="stylesheet">
-		<script type="text/javascript" src="js/spectrum.js"></script>
-		<script type="text/javascript" src="cordova.js"></script>
-		<script type="text/javascript" src="js/common.js"></script>
-		<script type="text/javascript">(function(e,b){if(!b.__SV){var a,f,i,g;window.mixpanel=b;b._i=[];b.init=function(a,e,d){function f(b,h){var a=h.split(".");2==a.length&&(b=b[a[0]],h=a[1]);b[h]=function(){b.push([h].concat(Array.prototype.slice.call(arguments,0)))}}var c=b;"undefined"!==typeof d?c=b[d]=[]:d="mixpanel";c.people=c.people||[];c.toString=function(b){var a="mixpanel";"mixpanel"!==d&&(a+="."+d);b||(a+=" (stub)");return a};c.people.toString=function(){return c.toString(1)+".people (stub)"};i="disable time_event track track_pageview track_links track_forms register register_once alias unregister identify name_tag set_config people.set people.set_once people.increment people.append people.union people.track_charge people.clear_charges people.delete_user".split(" ");
-		for(g=0;g<i.length;g++)f(c,i[g]);b._i.push([a,e,d])};b.__SV=1.2;a=e.createElement("script");a.type="text/javascript";a.async=!0;a.src="undefined"!==typeof MIXPANEL_CUSTOM_LIB_URL?MIXPANEL_CUSTOM_LIB_URL:"file:"===e.location.protocol&&"//cdn.mxpnl.com/libs/mixpanel-2-latest.min.js".match(/^\/\//)?"https://cdn.mxpnl.com/libs/mixpanel-2-latest.min.js":"//cdn.mxpnl.com/libs/mixpanel-2-latest.min.js";f=e.getElementsByTagName("script")[0];f.parentNode.insertBefore(a,f)}})(document,window.mixpanel||[]);
-		mixpanel.init("341fbe81b1dfcf9dc3865eb1cdc62d77");</script>
-	</head>
+<!DOCTYPE html>
+<html lang=en>
 
-		<body>
-			
-			<div class="container-fluid">
-				<div class="row menu-black-bg">
-					<div class="col-xs-2 column-width">
-						<div class="dropdown">
-							<a class="dropdown-toggle" data-toggle="dropdown"> <img src="./assets/img/Fav_white.png"></a>
-								<ul class="dropdown-menu scrollable-menu-favourite">
-									<div class="row favourite-dropdown-button-padding">
-										
-										<div class="col-xs-6 cart-btn-right-padding">
-											<button class="btn btn-block delete" type="button"><img src="./assets/img/cross.png"></button>
-										</div>
-										<div class="col-xs-6 cart-btn-left-padding">
-											<button class="btn btn-block add-to-cart" type="button"><img src="./assets/img/cart-dropdown.png"></button>
-										</div>
-									</div>
-									<div class="row favourite-dropdown-button-padding">
-										<img src="./assets/img/image2.png" class="favourite-item">
-										<div class="col-xs-6 cart-btn-right-padding">
-											<button class="btn btn-block delete" type="button"><img src="./assets/img/cross.png"></button>
-										</div>
-										<div class="col-xs-6 cart-btn-left-padding">
-											<button class="btn btn-block add-to-cart" type="button"><img src="./assets/img/cart-dropdown.png"></button>
-										</div>
-									</div>
-									<div class="row favourite-dropdown-button-padding">
-										<img src="./assets/img/image2.png" class="favourite-item">
-										<div class="col-xs-6 cart-btn-right-padding">
-											<button class="btn btn-block delete" type="button"><img src="./assets/img/cross.png"></button>
-										</div>
-										<div class="col-xs-6 cart-btn-left-padding">
-											<button class="btn btn-block add-to-cart" type="button"><img src="./assets/img/cart-dropdown.png"></button>
-										</div>
-									</div>
-									
-									<div class="row favourite-dropdown-button-padding">
-										<img src="./assets/img/image2.png" class="favourite-item">
-										<div class="col-xs-6 cart-btn-right-padding">
-											<button class="btn btn-block delete" type="button"><img src="./assets/img/cross.png"></button>
-										</div>
-										<div class="col-xs-6 cart-btn-left-padding">
-											<button class="btn btn-block add-to-cart" type="button"><img src="./assets/img/cart-dropdown.png"></button>
-										</div>
-									</div>
-						</div>
-					</div>
-					<div class="col-xs-2 column-width">
-						<div class="dropdown">
-							<a class="dropdown-toggle" data-toggle="dropdown"> <img src="./assets/img/Cart_white.png"></a>
-								<ul class="dropdown-menu scrollable-menu-cart">
-									<li><a href="#"><img src="./assets/img/Closed.png" class="remove"></a></li>
-									<li><a href="#"><p class="item-price-dropdown"><img src="./assets/img/image2.png"> $850 <br/> <span class="item-name-dropdown">MIU MIU</span> <br/> <span class="item-brand-dropdown">AMAZON</span></p></a></li>
-									<li class="divider"></li>
-									
-									<li><a href="#"><img src="./assets/img/Closed.png" class="remove"></a></li>
-									<li><a href="#"><p class="item-price-dropdown"><img src="./assets/img/image2.png"> $850 <br/> <span class="item-name-dropdown">MIU MIU</span> <br/> <span class="item-brand-dropdown">AMAZON</span></p></a></li>
-									<li class="divider"></li>
-									
-									<li><a href="#"><img src="./assets/img/Closed.png" class="remove"></a></li>
-									<li><a href="#"><p class="item-price-dropdown"><img src="./assets/img/image2.png"> $850 <br/> <span class="item-name-dropdown">MIU MIU</span> <br/> <span class="item-brand-dropdown">AMAZON</span></p></a></li>
-									<li class="divider"></li>
-									
-									<div class="button-drop-down-side-padding">
-										<button class="btn btn-block" type="button"><img src="./assets/img/Cart.png"></button>
-									</div>
-						</div>
-					</div>
-					<div class="col-xs-2 column-width">
-					<div class="dropdown">
-						<a class="dropdown-toggle" data-toggle="dropdown"> <img src="./assets/img/Menu_gray.png"></a>
-						<ul class="dropdown-menu scrollable-menu-filter">
-							<li>
-								<a href="#"></a>
-								<p class="all-text">ALL</p>
-							</li>
-							<li>
-								<a href="#"></a><img src="./assets/img/Shirt_Black.png"  id="clothingimg"></li>	
-							<li>
-								<a href="#"></a><img src="./assets/img/Watch_Black.png" id="watchimg"></li>
-							<li>
-								<a href="#"></a><img src="./assets/img/shoes_black.png" id="glassimg"></li>
-						  
-							<li>
-								<a href="#"></a><img src="./assets/img/headphone_black.png"id='gadgetimg'></li>
-							<li>
-								<a href="#"></a><img src="./assets/img/tent_black.png" id='cycleimg'></li>
-					</div>	
-					</div>
-					<div class="col-xs-2 column-width">
-						
-						<div class="dropdown">
-								<a id="clickforcolor"> <img src="./assets/img/Paint_white.png"></a>
-						
-							<div id="divColorPicker" style="display:none; overflow:visible;position:absolute;background-color:#000"  >
-								<div id="divColorName" style="background-color:#fff;width:100%;padding:auto;border:3px solid #000;text-align:center">
-									ALL
-								</div>
-								<div onclick="settext('ALL')" style="background-color:#000;width:100%;padding:auto;border:3px solid #000;text-align:center">
-									
-								</div>
-								<div style="height:350px; width:60px;margin-top:30px">
-	<div class="sp-hue border-colorpicker">
-										<div onclick="settext('orange')"  id='c1' style="height:5%"></div>
-										<div onclick="settext('orange')" id='c2' style="height:5%"></div>
-										<div onclick="settext('orange')" id='c3' style="height:5%"></div>
-										<div onclick="settext('green')" id='c4' style="height:5%"></div>
-										<div onclick="settext('green')" id='c5' style="height:5%"></div>
-										<div onclick="settext('green')" id='c6' style="height:5%"></div>
-										<div onclick="settext('green')" id='c7'style="height:5%"></div>
-										<div onclick="settext('green')" id='c8'style="height:5%"></div>
-										<div onclick="settext('green')" id='c9'style="height:5%"></div>
-										<div onclick="settext('blue')" id='c10'  style="height:5%"></div>
-										<div onclick="settext('blue')" id='c11'style="height:5%"></div>
-										<div onclick="settext('blue')" id='c12' style="height:5%"></div>
-										<div onclick="settext('blue')" id='c13' style="height:5%"></div>
-										<div onclick="settext('blue')" id='c14' style="height:5%"></div>
-										<div onclick="settext('blue')" id='c15' style="height:5%"></div>
-										<div onclick="settext('blue')" id='c16' style="height:5%"></div>
-										<div onclick="settext('pink ,blue')" id='c17' style="height:5%"></div>
-										<div onclick="settext('pink')"  id='c18' style="height:5%"></div>
-										<div onclick="settext('red')" id='c19' style="height:5%"></div>
-										<div onclick="settext('red')" id='c20' style="height:5%"></div>
+<head>
+    <title>Cart Page</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no">
+    <script type="text/javascript" src="js/lib/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="js/lib/bootstrap/bootstrap.min.js"></script>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/spectrum.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/odometer.css" />
+	<script type="text/javascript" src="hammer.js"></script>
+    <script src="js/lib/odometer.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/jquery-ui.css">
+    <link href="css/styles.css" rel="stylesheet">
+    <script type="text/javascript" src="js/spectrum.js"></script>
+    <script type="text/javascript" src="cordova.js"></script>
+    <script type="text/javascript" src="js/common.js"></script>
+    <script type="text/javascript">
+    (function(e, b) {
+        if (!b.__SV) {
+            var a, f, i, g;
+            window.mixpanel = b;
+            b._i = [];
+            b.init = function(a, e, d) {
+                function f(b, h) {
+                    var a = h.split(".");
+                    2 == a.length && (b = b[a[0]], h = a[1]);
+                    b[h] = function() {
+                        b.push([h].concat(Array.prototype.slice.call(arguments, 0)))
+                    }
+                }
+                var c = b;
+                "undefined" !== typeof d ? c = b[d] = [] : d = "mixpanel";
+                c.people = c.people || [];
+                c.toString = function(b) {
+                    var a = "mixpanel";
+                    "mixpanel" !== d && (a += "." + d);
+                    b || (a += " (stub)");
+                    return a
+                };
+                c.people.toString = function() {
+                    return c.toString(1) + ".people (stub)"
+                };
+                i = "disable time_event track track_pageview track_links track_forms register register_once alias unregister identify name_tag set_config people.set people.set_once people.increment people.append people.union people.track_charge people.clear_charges people.delete_user".split(" ");
+                for (g = 0; g < i.length; g++) f(c, i[g]);
+                b._i.push([a, e, d])
+            };
+            b.__SV = 1.2;
+            a = e.createElement("script");
+            a.type = "text/javascript";
+            a.async = !0;
+            a.src = "undefined" !== typeof MIXPANEL_CUSTOM_LIB_URL ? MIXPANEL_CUSTOM_LIB_URL : "file:" === e.location.protocol && "//cdn.mxpnl.com/libs/mixpanel-2-latest.min.js".match(/^\/\//) ? "https://cdn.mxpnl.com/libs/mixpanel-2-latest.min.js" : "//cdn.mxpnl.com/libs/mixpanel-2-latest.min.js";
+            f = e.getElementsByTagName("script")[0];
+            f.parentNode.insertBefore(a, f)
+        }
+    })(document, window.mixpanel || []);
+    mixpanel.init("341fbe81b1dfcf9dc3865eb1cdc62d77");
+    </script>
+</head>
 
-									</div>
+<body>
+<div class="container-fluid">
+		    <div class="row menu-black-bg">
+							    <div class="col-xs-6">
+								    <img src="./assets/img/logo.png" class="app-logo-in-popup">
 								</div>
-							</div>		 
-						</div>
-					</div>
-					<div class="col-xs-2 column-width">
-						<div class="dropdown">
-							<a class="dropdown-toggle" data-toggle="dropdown"> <img src="./assets/img/Profile_white.png"></a>
-								<ul class="dropdown-menu scrollable-menu-profile">
-									<li><a href="#"></a><img src="./assets/img/size.png"></li>
-									<li><a href="#"></a><p>SIZES</p></li>
-									<li><a href="#"></a><img src="./assets/img/cc-info.png"></li>
-									<li><a href="#"></a><p>CC INFO</p></li>
-									<li><a href="#"></a><img src="./assets/img/shipping.png"></li>
-									<li><a href="#"></a><p>SHIPPING</p></li>
-									<li><a href="#"></a><img src="./assets/img/orders.png"></li>
-									<li><a href="#"></a><p>ORDERS</p></li>
-						</div>	
+								<div class="col-xs-2">
+								
+								    
+									  <div class="dropdown" id="colorDropdown" >
+                    <!-- <a id="clickforcolor"> <img src="./assets/img/Paint_white.png"></a> -->
+                    <a id="clickforcolor" class="dropdown-toggle" data-toggle="dropdown">
+                        <img src="./assets/img/Paint_white.png" class="pop-menu-color">
+                    </a>
+                    <ul class="dropdown-menu scrollable-menu-filter colorpicker">
+                        <div class="color-result" id="divColorName">All</div>
+                        <div id="colorSlider" style="display:none"></div>
+                    </ul>
+                    <!-- <div id="divColorPicker" style="display:none; overflow:visible;position:absolute;background-color:#000">
+                        <div id="divColorName" style="background-color:#fff;width:100%;padding:auto;border:3px solid #000;text-align:center">
+                            ALL
+                        </div>
+                        <div onclick="settext('ALL')" style="background-color:#000;width:100%;padding:auto;border:3px solid #000;text-align:center">
+                        </div>
+                        <div style="height:350px; width:60px;margin-top:30px">
+                            <div class="sp-hue border-colorpicker">
+                                <div onclick="settext('orange')" id='c1' style="height:5%"></div>
+                                <div onclick="settext('orange')" id='c2' style="height:5%"></div>
+                                <div onclick="settext('orange')" id='c3' style="height:5%"></div>
+                                <div onclick="settext('green')" id='c4' style="height:5%"></div>
+                                <div onclick="settext('green')" id='c5' style="height:5%"></div>
+                                <div onclick="settext('green')" id='c6' style="height:5%"></div>
+                                <div onclick="settext('green')" id='c7' style="height:5%"></div>
+                                <div onclick="settext('green')" id='c8' style="height:5%"></div>
+                                <div onclick="settext('green')" id='c9' style="height:5%"></div>
+                                <div onclick="settext('blue')" id='c10' style="height:5%"></div>
+                                <div onclick="settext('blue')" id='c11' style="height:5%"></div>
+                                <div onclick="settext('blue')" id='c12' style="height:5%"></div>
+                                <div onclick="settext('blue')" id='c13' style="height:5%"></div>
+                                <div onclick="settext('blue')" id='c14' style="height:5%"></div>
+                                <div onclick="settext('blue')" id='c15' style="height:5%"></div>
+                                <div onclick="settext('blue')" id='c16' style="height:5%"></div>
+                                <div onclick="settext('pink ,blue')" id='c17' style="height:5%"></div>
+                                <div onclick="settext('pink')" id='c18' style="height:5%"></div>
+                                <div onclick="settext('red')" id='c19' style="height:5%"></div>
+                                <div onclick="settext('red')" id='c20' style="height:5%"></div>
+                            </div>
+                        </div>
+                    </div> -->
+                </div>
+									
+								</div>
+			    <div class="col-xs-2">
+				    <div class="dropdown">
+					
+					
+					    <a class="dropdown-toggle" data-toggle="dropdown"> <img src="./assets/img/Filter_white.png" class="pop-menu-filter"></a>
+					        <ul class="dropdown-menu needsclick scrollable-menu-filter">
+                        <li>
+                            <a href="#"></a>
+                            <p class="all-text" id="maleall">ALL</p>
+                        </li>
+                        <li>
+                            <a href="#"></a><img src="./assets/img/Shirt_Black.png" id="clothingimg"></li>
+                        <li>
+                            <a href="#"></a><img src="./assets/img/Watch_Black.png" id="watchimg"></li>
+                        <li>
+                            <a href="#"></a><img src="./assets/img/Glass.png" id="sunglassimg"></li>
+                        <li>
+                            <a href="#"></a><img src="./assets/img/headphone_black.png" id='gadgetimg'></li>
+                        <li>
+                            <a href="#"></a><img src="./assets/img/tent_black.png" id='cycleimg'></li>
+							<li>
+                            <a href="#"></a><img src="./assets/img/shoes_black.png" id='shoesimg'></li>
+                    </ul>				    </div>		
+				</div>
+				
+				<div class="col-xs-2">
+				    <div class="dropdown">
+					    <a class="dropdown-toggle" data-toggle="dropdown"> <img src="./assets/img/Fav_white.png" class="pop-menu-favourite"></a>
+					        <ul class="dropdown-menu scrollable-menu-favourite">
+							    <div class="row favourite-dropdown-button-padding">
+								    <img src="./assets/img/image2.png" class="favourite-item">
+							        <div class="col-xs-6 cart-btn-right-padding">
+										<button class="btn btn-block delete" type="button"><img src="./assets/img/cross.png"></button>
+								    </div>
+								    <div class="col-xs-6 cart-btn-left-padding">
+							            <button class="btn btn-block add-to-cart" type="button"><img src="./assets/img/cart-dropdown.png"></button>
+								    </div>
+							    </div>
+								<div class="row favourite-dropdown-button-padding">
+								    <img src="./assets/img/image2.png" class="favourite-item">
+							        <div class="col-xs-6 cart-btn-right-padding">
+										<button class="btn btn-block delete" type="button"><img src="./assets/img/cross.png"></button>
+								    </div>
+								    <div class="col-xs-6 cart-btn-left-padding">
+							            <button class="btn btn-block add-to-cart" type="button"><img src="./assets/img/cart-dropdown.png"></button>
+								    </div>
+							    </div>
+								<div class="row favourite-dropdown-button-padding">
+								    <img src="./assets/img/image2.png" class="favourite-item">
+							        <div class="col-xs-6 cart-btn-right-padding">
+										<button class="btn btn-block delete" type="button"><img src="./assets/img/cross.png"></button>
+								    </div>
+								    <div class="col-xs-6 cart-btn-left-padding">
+							            <button class="btn btn-block add-to-cart" type="button"><img src="./assets/img/cart-dropdown.png"></button>
+								    </div>
+							    </div>
+								
+								<div class="row favourite-dropdown-button-padding">
+								    <img src="./assets/img/image2.png" class="favourite-item">
+							        <div class="col-xs-6 cart-btn-right-padding">
+										<button class="btn btn-block delete" type="button"><img src="./assets/img/cross.png"></button>
+								    </div>
+								    <div class="col-xs-6 cart-btn-left-padding">
+							            <button class="btn btn-block add-to-cart" type="button"><img src="./assets/img/cart-dropdown.png"></button>
+								    </div>
+							    </div>
 					</div>
 				</div>
 			</div>
-			<div class="container-fluid off-white-bg">
-			<div class="add-items">
-			
-				</div>
-				
-				<!--<div class="row bottom-search-bg">
+		</div>
+    <div class="container-fluid off-white-bg">
+        <div class="add-items">
+        </div>
+        <!--<div class="row bottom-search-bg">
 					<div class="col-xs-12" >
 						<form class="form-inline">
 							<div class="form-group bottom-search-margin">
@@ -190,56 +208,101 @@
 						</form>
 					</div>
 				</div> -->
-			</div>
-			
-			<div class="modal"><!-- Place at bottom of page --></div> 
-		<script type="text/javascript" src="js/cart_Page.js"></script>
-		<script type="text/javascript" src="js/index.js"></script>
-		</body>
+    </div>
+    <div class="modal1">
+        <!-- Place at bottom of page -->
+    </div>
+    <script type="text/javascript" src="js/cart_Page.js"></script>
+    <script type="text/javascript" src="js/index.js"></script>
+    <script type="text/javascript" src="js/disableback.js"></script>
+    <script src="js/lib/jquery-ui/jquery-ui.js"></script>
+    <script src="js/lib/jquery-touch/jquery.ui.touch-punch.min.js"></script>
+    <script>
+    $(document).ready(function() {
+        $("#colorSlider").slider({
+            max: 100,
+            min: 0,
+            range: "min",
+            value: 0,
+            orientation: "vertical"
+        });
+    });
+	
+	
+	
+    </script>
+</body>
 <script>
- $('#clickforcolor').click(function (e) {
-//alert(document.getElementById("divColorPicker").style.display)
-if(document.getElementById("divColorPicker").style.display=="")
-document.getElementById("divColorPicker").style.display = "none";
-else
-document.getElementById("divColorPicker").style.display = "";
+$('#clickforcolor').click(function(e) {
+    //alert(document.getElementById("divColorPicker").style.display)
+    /*if (document.getElementById("divColorPicker").style.display == "")
+        document.getElementById("divColorPicker").style.display = "none";
+    else
+        document.getElementById("divColorPicker").style.display = "";*/
+    if ($("#colorSlider").is(':visible'))
+        $("#colorSlider").hide();
+    else {
+        $("#colorSlider").show();
+    }
+});
+/*$("#colorSlider").on("slidestop", function(event, ui) {
+    console.log("ui.value:" + ui.value)
+    if (ui.value > 0 && ui.value < 10)
+        $("#divColorName").text("Black");
+    else if (ui.value > 10 && ui.value < 20)
+        $("#divColorName").text("Grey");
+    else if (ui.value > 20 && ui.value < 30)
+        $("#divColorName").text("White");
+    else if (ui.value > 20 && ui.value < 30)
+        $("#divColorName").text("Pink");
+    else if (ui.value > 30 && ui.value < 40)
+        $("#divColorName").text("Blue");
+    else if (ui.value > 30 && ui.value < 40)
+        $("#divColorName").text("Violet");
+    else if (ui.value > 40 && ui.value < 50)
+        $("#divColorName").text("Green");
+    else if (ui.value > 50 && ui.value < 60)
+        $("#divColorName").text("Yellow");
+    else if (ui.value > 60 && ui.value < 70)
+        $("#divColorName").text("Orange");
+    else if (ui.value > 70 && ui.value < 80)
+        $("#divColorName").text("Maroon");
+    else if (ui.value > 80 && ui.value < 99)
+        $("#divColorName").text("Red");
+    else if (ui.value == 0 || ui.value == 100)
+        $("#divColorName").text("All");
+});*/
+$("#openpickerlink").spectrum({
+    color: "#dd3333",
+    change: function(coloe) {
+        alert("updating borders")
+
+    },
+    show: function() {
+        //alert("Shown")
+
+    },
+    hide: function() {
+        alert("hidden")
+    }
 });
 
-			$("#openpickerlink").spectrum({
-			    color: "#dd3333",
-			    change: function(coloe){
-			    	alert("updating borders")
+function settext(text) {
+    $("#divColorName").html(text);
 
-			    },
-			    show: function() {
-			    	//alert("Shown")
+}
+</script>
+<style type="text/css">
+.divCpicker {
+    height: 350px;
+    position: 'absolute';
+ left: 0;
+    top: 0;
+    font-size: 10px;
+    width: auto;
+    height: 20px;
+    border: solid 1px red;
+}
+</style>
 
-			    },
-			    hide: function() {
-			    	alert("hidden")
-			    }
-			});
-
-			function settext(text)
-			{
-				$("#divColorName").html(text);
-
-			}
-
-		</script>
-		<style type="text/css">
-			.divCpicker {
-				height:350px;
-				 position': 'absolute';
-				 left:0;
-				 top: 0;
-
-			    
-			    font-size:10px;
-			    width:auto;
-			    height:20px;
-			    border:solid 1px red;
-			}
-		</style>
-
-	</html>
+</html>
