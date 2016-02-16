@@ -930,6 +930,8 @@
 	.logo-bg  {
 	  background-color:#f9f9f9; border-top-right-radius:5px; 
 	 border-top-left-radius:5px; border:1px solid #3b3a3a; padding-left:0; padding-right:0;
+	 /*mk*/
+	 width:200px;
 	}
 		
 		.price-logo  {
@@ -950,6 +952,8 @@
 	   border-bottom-right-radius:5px; 
 	 border-bottom-left-radius:5px; border-bottom:1px solid #3b3a3a;
 	 border-left:1px solid #3b3a3a; border-right:1px solid #3b3a3a;
+	  /*mk*/
+	 width:200px;
 	 
 	 }
 		
