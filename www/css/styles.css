@@ -14,10 +14,15 @@
 		}
 		
 		@font-face {
-    font-family: 'Futura Medium';
-    src: url('ufonts.com_futura-medium.ttf') format('truetype');
-}
+		    font-family: 'Futura Medium';
+		    src: url('ufonts.com_futura-medium.ttf') format('truetype');
+		}
 		/*Dinesh start */
+		
+		.shopname {
+		    -webkit-animation-duration: 4s;
+		    -webkit-animation-delay: 3s;
+		}
 		
 		.lipadding {
 		    padding: 7px;
@@ -26,8 +31,8 @@
 		.strike {
 		    position: relative;
 		    display: inline-block;
-		    font-weight:normal;
-		    font-size: small; 
+		    font-weight: normal;
+		    font-size: small;
 		}
 		
 		.strike::before {
@@ -40,8 +45,6 @@
 		}
 		/*Dinesh end*/
 		/* for carousel images */
-		
-		
 		
 		.modal1 {
 		    display: none;
@@ -88,17 +91,18 @@
 		}
 		
 		.off-white-bg {
-		    background-color: #f4f3f3;
+		    background-color: black;
 		    min-height: 90%;
 		    min-height: 90vh;
-		    margin-top: 55px;
+		    margin-top: 54px;
 		}
 		
 		.items {
 		    position: relative;
 		    width: 100%;
 		    height: 140px;
-		    /*object-fit: contain;*/ /*Disabled it to fit the image size to the detailed text*/
+		    /*object-fit: contain;*/
+		    /*Disabled it to fit the image size to the detailed text*/
 		}
 		
 		.item-price {
@@ -113,30 +117,43 @@
 		}
 		
 		.border-outline {
-		    border: 1px solid #979797;
+		    /* border:1px solid #979797; */
 		    margin-left: 0;
 		    margin-right: 0;
+		    background-color: white;
 		}
 		
-		.border-outline p  {
-	    font-size:22px;
-		color:#605d5d;
-	    text-align:right; 
-	   margin-top:8px; margin-right:-6px; 
-	   font-family:'Avenir Next Bold';
-	   font-weight:bold;
-	   margin-bottom:5px
-	 }
-	 
-	 .border-outline img {
-	  margin-top:2px; margin-left:-8px; float:left;
-	 }
+		.border-outline>.col-xs-12 {
+		    padding-left: 10px;
+		}
+		
+		.border-outline p {
+		    font-size: 22px;
+		    color: #605d5d;
+		    text-align: right;
+		    margin-top: 8px;
+		    margin-right: -6px;
+		    font-family: 'Avenir Next Bold';
+		    font-weight: bold;
+		    margin-bottom: 5px;
+		    overflow: hidden;
+		    white-space: nowrap;
+		    text-overflow: ellipsis;
+		}
+		
+		.border-outline img {
+		    margin-top: 2px;
+		    margin-left: 0;
+		    float: left;
+		    padding-right: 10px;
+		}
 		
 		.border-outline span {
 		    text-decoration: line-through;
 		    font-size: 17px;
 		    /*Included Roboto for avoiding strike through issue*/
-		    font-family: 'Avenir Next Medium';
+		    /*font-family: 'Avenir Next Medium';*/
+		    font-family: 'Avenir Next Condensed';
 		    text-align: right;
 		    vertical-align: 10px;
 		    margin-right: 5px;
@@ -226,7 +243,8 @@
 		    border-radius: 5px !important;
 		    padding: 0 5px !important;
 		    margin-top: -6px !important;
-		    margin-left: 35%; /*To place the delete icon in center*/
+		    margin-left: 35%;
+		    /*To place the delete icon in center*/
 		}
 		
 		.add-to-cart img,
@@ -927,41 +945,50 @@
 		    }
 		}
 		
-	.logo-bg  {
-	  background-color:#f9f9f9; border-top-right-radius:5px; 
-	 border-top-left-radius:5px; border:1px solid #3b3a3a; padding-left:0; padding-right:0;
-	 /*mk*/
-	 width:200px;
-	}
+		.logo-bg {
+		    background-color: #f9f9f9;
+		    border-top-right-radius: 5px;
+		    border-top-left-radius: 5px;
+		    border: 1px solid #3b3a3a;
+		    padding-left: 0;
+		    padding-right: 0;
+		}
 		
-		.price-logo  {
-	  display:block;
-	  margin:25px auto 13px;
-	}
+		.price-logo {
+		    display: block;
+		    margin: 25px auto 13px;
+		}
 		
-		.tagline   {
-	  color:#000; font-size:13px;  padding:5px 1px 0; text-align:center;
-	  font-family: 'Futura Medium'; font-weight:bold;
-	  letter-spacing:1px;
-	  
-	 }
+		.tagline {
+		    color: #000;
+		    font-size: 13px;
+		    padding: 5px 1px 0;
+		    text-align: center;
+		    font-family: 'Futura Medium';
+		    font-weight: bold;
+		    letter-spacing: 1px;
+		}
 		
-		.login-fb-bg  {
-	   background-color:#f9f9f9; padding-top:20px;
-	   margin-top:-5px;
-	   border-bottom-right-radius:5px; 
-	 border-bottom-left-radius:5px; border-bottom:1px solid #3b3a3a;
-	 border-left:1px solid #3b3a3a; border-right:1px solid #3b3a3a;
-	  /*mk*/
-	 width:200px;
-	 
-	 }
+		.login-fb-bg {
+		    background-color: #f9f9f9;
+		    padding-top: 20px;
+		    margin-top: -5px;
+		    border-bottom-right-radius: 5px;
+		    border-bottom-left-radius: 5px;
+		    border-bottom: 1px solid #3b3a3a;
+		    border-left: 1px solid #3b3a3a;
+		    border-right: 1px solid #3b3a3a;
+		}
 		
-		.login-text  {
-	   text-align:center; font-size:15px; font-weight:bold; color:#000;
-	   margin-top:-13px; font-family: 'Futura Medium'; letter-spacing:2px;
-	 }
-		
+		.login-text {
+		    text-align: center;
+		    font-size: 15px;
+		    font-weight: bold;
+		    color: #000;
+		    margin-top: -13px;
+		    font-family: 'Futura Medium';
+		    letter-spacing: 2px;
+		}
 		
 		.login-mail-bg {
 		    background-color: #f9f9f9;
@@ -1309,7 +1336,6 @@
 		}
 		
 		.modal-content {
-		    
 		    border-radius: 0px;
 		    margin: 53px auto 0px;
 		}
@@ -1321,11 +1347,14 @@
 		
 		.discounted-price-in-pop-up {
 		    font-size: 23px;
-		    font-family: 'Avenir Next Bold';
+		    font-family: 'Avenir Next Condensed';
 		    font-weight: bold;
 		    color: #000;
 		    text-align: center;
-		    margin-top: -18px
+		    margin-top: -18px;
+		    /*  issue 4 */
+		    display: inline;
+		    position: fixed;
 		}
 		
 		.product-detail-top-margin-in-popup {
@@ -1336,14 +1365,16 @@
 		
 		.retail-text-in-popup {
 		    font-size: 11px;
-		    font-family: 'Avenir Next Medium';
-		    margin-left: 5px;
+		    /*font-family: 'Avenir Next Medium';*/
+		    font-family: 'Avenir Next Condensed';
+		    margin-left: 0px;
 		    margin-top: -10px;
 		}
 		
 		.retail-price-in-popup {
 		    font-size: 12px;
-		    font-family: 'Avenir Next Medium';
+		    /* font-family: 'Avenir Next Medium';*/
+		    font-family: 'Avenir Next Condensed';
 		    text-decoration: line-through;
 		    margin-top: -12px
 		}
@@ -1363,7 +1394,8 @@
 		
 		.saved-text-in-popup {
 		    font-size: 11px;
-		    font-family: 'Avenir Next Medium';
+		    /* font-family: 'Avenir Next Medium';*/
+		    font-family: 'Avenir Next Condensed';
 		    text-align: right;
 		    margin-top: -12px;
 		    margin-left: -6px;
@@ -1371,7 +1403,8 @@
 		
 		.saved-amount-in-popup {
 		    font-size: 12px;
-		    font-family: 'Avenir Next Medium';
+		    /*font-family: 'Avenir Next Medium';*/
+		    font-family: 'Avenir Next Condensed';
 		    margin-top: -11px;
 		    text-align: right;
 		    margin-left: -21px;
@@ -1383,7 +1416,8 @@
 		    color: #fff;
 		    background-color: #000;
 		    font-size: 16px;
-		    font-family: 'Avenir Next Medium';
+		    /*font-family: 'Avenir Next Medium';*/
+		    font-family: 'Avenir Next Condensed';
 		    padding: 7px 10px 8px 12px;
 		    border-radius: 8px;
 		    text-align: left;
@@ -1400,7 +1434,8 @@
 		.product-name-in-popup {
 		    color: #464646;
 		    font-size: 15px;
-		    font-family: 'Avenir Next Demibold';
+		    /* font-family: 'Avenir Next Demibold';*/
+		    font-family: 'Avenir Next Condensed';
 		    margin-top: 15px;
 		    margin-bottom: 2px;
 		    text-align: center;
@@ -1554,16 +1589,16 @@
 		/* css for color-slider in menu */
 		
 		.scrollable-menu-color {
-			min-width: 45px;
-			width: 45px;
-			border-radius: 6px !important;
-			border: 1px solid #000 !important;
-			margin-top: 53px;
-			background-color: #fff;
-			margin-left: -5px;
-			height: auto !important;
-			max-height: 284px !important;
-			overflow-x: hidden;
+		    min-width: 45px;
+		    width: 45px;
+		    border-radius: 6px !important;
+		    border: 1px solid #000 !important;
+		    margin-top: 53px;
+		    background-color: #fff;
+		    margin-left: -5px;
+		    height: auto !important;
+		    max-height: 284px !important;
+		    overflow-x: hidden;
 		}
 		
 		@media only screen and (max-width: 780px) {
@@ -1580,7 +1615,7 @@
 		.scrollable-menu-color > li {
 		    /*margin: 6px 0px 9px;*/
 		    padding: 20px 0 5px;
-		   /* border: 1px solid #acacac;*/
+		    /* border: 1px solid #acacac;*/
 		}
 		
 		.all-color {
@@ -1708,7 +1743,6 @@
 		/*Neheme Designs end*/
 		
 		.pop-up-right-side {
-		    
 		    border-radius: 0px;
 		    margin-top: 43px !important;
 		    float: right !important;
@@ -2145,8 +2179,8 @@
 		    min-width: auto;
 		    width: 75px;
 		    border-radius: 6px;
-			border-top-right-radius: 0px !important;
-			border-top-left-radius: 0px !important;
+		    border-top-right-radius: 0px !important;
+		    border-top-left-radius: 0px !important;
 		    border: 1px solid #000 !important;
 		    margin-top: 53px;
 		    background-color: #fff;
@@ -2154,17 +2188,16 @@
 		    height: auto !important;
 		    max-height: 284px !important;
 		    overflow-x: hidden;
-			right: 0;
-			left: inherit;
+		    right: 0;
+		    left: inherit;
 		}
 		
 		.scrollable-menu-color> li {
 		    margin: 0;
 		    padding: 5px;
-			text-align: center;
-			margin-bottom: 10px;
+		    text-align: center;
+		    margin-bottom: 10px;
 		}
-		
 		/*li:not(.different) {
 		    margin: 6px 7px 9px;
 		    padding: 20px 0 5px;
@@ -2180,8 +2213,6 @@
 		    margin-bottom: -6px !important;
 		    margin-top: -3px !important;
 		}
-		
-		
 		
 		.purple-color {
 		    background-color: #800080;
@@ -2228,59 +2259,52 @@
 		    background-color: #835C3B;
 		}
 		/* css for color picker end  */
-
+		/*  new css  */
 		
-	/*  new css  */
-	
-	@media only screen and (max-height: 500px) {
-	.login-bg-top-margin  {
-	  margin-top:150px;
-	}
-	}
-
-	@media only screen and (min-height: 501px) and (max-height: 600px) {
-
-	.login-bg-top-margin  {
-	  margin-top:190px;
-	}
-	}
-
-	@media only screen and (min-height: 601px) and (max-height: 700px) {
-
-	.login-bg-top-margin  {
-	  margin-top:210px;
-	}
-	}
-
-	@media only screen and (min-height: 701px) and (max-height: 800px) {
-
-	.login-bg-top-margin  {
-	  margin-top:240px;
-	}
-	}
-	
-	
-	
-	.slider-img  {
-	  width: 100%;
-	  height: 250px !important;
-	  object-fit: cover;
-	  
-	}
-	
-.carousel-inner img  {
-	 border-radius:0;
-}
-
-.top-margin-indicators  {
-	   bottom:-34px;
-	}
-
-.product-name-in-popup   {
-	  color:#464646; font-size:15px; 
-	  margin-top:27px;
-	  margin-bottom:2px;
-	  text-align:center;
-	  font-family: 'Avenir Next Demibold';
-	  
-	}
+		@media only screen and (max-height: 500px) {
+		    .login-bg-top-margin {
+		        margin-top: 150px;
+		    }
+		}
+		
+		@media only screen and (min-height: 501px) and (max-height: 600px) {
+		    .login-bg-top-margin {
+		        margin-top: 190px;
+		    }
+		}
+		
+		@media only screen and (min-height: 601px) and (max-height: 700px) {
+		    .login-bg-top-margin {
+		        margin-top: 210px;
+		    }
+		}
+		
+		@media only screen and (min-height: 701px) and (max-height: 800px) {
+		    .login-bg-top-margin {
+		        margin-top: 240px;
+		    }
+		}
+		
+		.slider-img {
+		    width: 100% !important;
+		    height: 250px !important;
+		    object-fit: cover;
+		}
+		
+		.carousel-inner img {
+		    border-radius: 0 !important;
+		}
+		
+		.top-margin-indicators {
+		    bottom: -34px !important;
+		}
+		
+		.product-name-in-popup {
+		    color: #464646;
+		    font-size: 15px;
+		    margin-top: 27px !important;
+		    margin-bottom: 2px;
+		    text-align: center;
+		    /* font-family: 'Avenir Next Demibold';*/
+		    font-family: 'Avenir Next Condensed';
+		}
