@@ -1205,7 +1205,7 @@
 
 	});
 	/*To disable scroll when color picker is shown*/
-	$('#colorDropDown,#favoritedropdown').on('hidden.bs.dropdown', function() {
+	$('#colorDropDown,#favoritedropdown,.scrollable-menu-filter').on('hidden.bs.dropdown', function() {
 	    scrollPos = 0;
 	    $('body').css({
 	        overflow: '',
@@ -1214,7 +1214,7 @@
 	    }).scrollTop(scrollPos);
 	});
 	/*To enable scroll when color picker is hided*/
-	$('#colorDropDown,#favoritedropdown').on('shown.bs.dropdown', function() {
+	$('#colorDropDown,#favoritedropdown,.scrollable-menu-filter').on('shown.bs.dropdown', function() {
 	    // var scrollPos = 0;
 	    scrollPos = $('body').scrollTop();
 	    $('body').css({
