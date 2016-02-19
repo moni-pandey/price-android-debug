@@ -1,273 +1,206 @@
 <!DOCTYPE html>
-<html lang=en>
+<html lang="en">
 
 <head>
-    <title>Cart Page</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no">
-    <script type="text/javascript" src="js/lib/jquery/jquery.min.js"></script>
-    <script type="text/javascript" src="js/lib/bootstrap/bootstrap.min.js"></script>
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="css/jquery-ui.css">
-    <link href="css/styles.css" rel="stylesheet">
-    <link href="css/spectrum.css" rel="stylesheet">
-    <link rel="stylesheet" href="css/odometer.css" />
-    <link rel="stylesheet" type="text/css" href="css/animate.css">
-    <script type="text/javascript" src="js/lib/textilate/jquery.lettering.js"></script>
-    <script type="text/javascript" src="js/lib/textilate/jquery.textillate.js"></script>
-    <script type="text/javascript" src="hammer.js"></script>
-    <script src="js/lib/odometer.js"></script>
-    <script type="text/javascript" src="cordova.js"></script>
-    <script type="text/javascript" src="js/common.js"></script>
-    <script type="text/javascript" src="js/spectrum.js"></script>
-    <script type="text/javascript">
-    (function(e, b) {
-        if (!b.__SV) {
-            var a, f, i, g;
-            window.mixpanel = b;
-            b._i = [];
-            b.init = function(a, e, d) {
-                function f(b, h) {
-                    var a = h.split(".");
-                    2 == a.length && (b = b[a[0]], h = a[1]);
-                    b[h] = function() {
-                        b.push([h].concat(Array.prototype.slice.call(arguments, 0)))
-                    }
-                }
-                var c = b;
-                "undefined" !== typeof d ? c = b[d] = [] : d = "mixpanel";
-                c.people = c.people || [];
-                c.toString = function(b) {
-                    var a = "mixpanel";
-                    "mixpanel" !== d && (a += "." + d);
-                    b || (a += " (stub)");
-                    return a
-                };
-                c.people.toString = function() {
-                    return c.toString(1) + ".people (stub)"
-                };
-                i = "disable time_event track track_pageview track_links track_forms register register_once alias unregister identify name_tag set_config people.set people.set_once people.increment people.append people.union people.track_charge people.clear_charges people.delete_user".split(" ");
-                for (g = 0; g < i.length; g++) f(c, i[g]);
-                b._i.push([a, e, d])
-            };
-            b.__SV = 1.2;
-            a = e.createElement("script");
-            a.type = "text/javascript";
-            a.async = !0;
-            a.src = "undefined" !== typeof MIXPANEL_CUSTOM_LIB_URL ? MIXPANEL_CUSTOM_LIB_URL : "file:" === e.location.protocol && "//cdn.mxpnl.com/libs/mixpanel-2-latest.min.js".match(/^\/\//) ? "https://cdn.mxpnl.com/libs/mixpanel-2-latest.min.js" : "//cdn.mxpnl.com/libs/mixpanel-2-latest.min.js";
-            f = e.getElementsByTagName("script")[0];
-            f.parentNode.insertBefore(a, f)
-        }
-    })(document, window.mixpanel || []);
-    mixpanel.init("341fbe81b1dfcf9dc3865eb1cdc62d77");
-    </script>
+    <title>Price</title>
+    <link href="css/bootstrap/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/jquery-ui/jquery-ui.css">
+    <link rel="stylesheet" href="css/odometer/odometer.css" />
+    <link rel="stylesheet" href="css/animate/animate.css">
+    <link href="css/theme.css" rel="stylesheet">
+    <script type="text/javascript" src="js/mixpanel/cart_page_male-mix.js"></script>
 </head>
 
 <body>
-    <div class="container-fluid">
-        <div class="row menu-black-bg">
-            <div class="col-xs-6">
-                <img src="./assets/img/logo.png" class="app-logo-in-popup">
-            </div>
-            <div class="col-xs-2">
-                <div class="dropdown">
-                    <a class="dropdown-toggle needsclick" data-toggle="dropdown"> <img src="./assets/img/Filter_white.png" class="pop-menu-filter"></a>
-                    <ul class="dropdown-menu scrollable-menu-filter">
-                        <li class="">
-                            <a href="#"></a>
-                            <img src="./assets/img/all_25x36.png" id="alltext" />
-                            <!-- <p class="all-text" id="alltext">ALL</p> -->
-                        </li>
-                        <li class="">
-                            <a href="#"></a><img src="./assets/img/Dress_icon.png" id="clothingimg" /></li>
-                        <li class="">
-                            <a href="#"></a><img src="./assets/img/Ring_.png" id="necklaceimg"></li>
-                        <li class="">
-                            <a href="#"></a><img src="./assets/img/Shopping_.png" id="purseimg"></li>
-                        <li class="">
-                            <a href="#"></a><img src="./assets/img/rose_.png" id="sandleimg"></li>
-                    </ul>
+    <header id="pageheader">
+        <a href="#"><img src="img/logo.png"></a>
+    </header>
+    <div id="wrapper">
+        <main id="pagecontent">
+            <div class="container-fluid">
+                <div class="row top-margin add-items">
+                    <!--         <div class="add-items">            <div class="col-md-3 col-sm-6 col-xs-6">
+                        <div class="product-list">
+                            <img src="img/bag.jpg" class="img-responsive">
+                            <div class="product-title">
+                                <span class="favorite"><img src="img/icons/fav_gray.png"></span>
+                                <h5>Leatherman</h5>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-6 col-xs-6">
+                        <div class="product-list">
+                            <img src="img/bag.jpg" class="img-responsive">
+                            <div class="product-title">
+                                <span class="favorite"><img src="img/icons/fav_gray.png"></span>
+                                <h5>Leatherman</h5>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-6 col-xs-6">
+                        <div class="product-list">
+                            <img src="img/bag.jpg" class="img-responsive">
+                            <div class="product-title">
+                                <span class="favorite"><img src="img/icons/fav_gray.png"></span>
+                                <h5>Leatherman</h5>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-6 col-xs-6">
+                        <div class="product-list">
+                            <img src="img/bag.jpg" class="img-responsive">
+                            <div class="product-title">
+                                <span class="favorite"><img src="img/icons/fav_gray.png"></span>
+                                <h5>Leatherman</h5>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-6 col-xs-6">
+                        <div class="product-list">
+                            <img src="img/bag.jpg" class="img-responsive">
+                            <div class="product-title">
+                                <span class="favorite"><img src="img/icons/fav_gray.png"></span>
+                                <h5>Leatherman</h5>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-6 col-xs-6">
+                        <div class="product-list">
+                            <img src="img/bag.jpg" class="img-responsive">
+                            <div class="product-title">
+                                <span class="favorite"><img src="img/icons/fav_gray.png"></span>
+                                <h5>Leatherman</h5>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-6 col-xs-6">
+                        <div class="product-list">
+                            <img src="img/bag.jpg" class="img-responsive">
+                            <div class="product-title">
+                                <span class="favorite"><img src="img/icons/fav_gray.png"></span>
+                                <h5>Leatherman</h5>
+                            </div>
+                        </div>
+                    </div> </div>-->
                 </div>
             </div>
-            <div class="col-xs-2">
-                <div class="dropdown" id="colorDropDown">
-                    <a id="clickforcolor" class="dropdown-toggle" data-toggle="dropdown"> <img src="./assets/img/Paint_white.png" class="pop-menu-color"></a>
-                    <!-- <ul class="dropdown-menu  scrollable-menu-color colorpicker">
-							<div class="color-result" id="divColorName">All</div>
-							<div id="fColorSlider" style="display:none"></div> 
-						</ul>-->
-                    <ul class="dropdown-menu scrollable-menu-color">
-                        <!-- <li class="all" style="padding-top: 0px !important; padding-bottom: 0px !important;">ALL</li> -->
-                        <!--  <li class="all" style="padding-top: 0px !important; padding-bottom: 0px !important;border-style:none !important"><img src="./assets/img/all_25x36.png"/></li>
-                        <li class="cream-color"></li>
-                        <li class="black-color"></li>
-                        <li class="pink-color"></li> -->
-                        <li onclick="callforcolorfilter(ALL)"><img src="./assets/img/all_35x25.png" /></li>
-                        <li class="pink-color" onclick="callforcolorfilter('white')"><img src="./assets/img/White-gradient_35x25.png"></li>
-                        
-                        <li class="black-color" onclick="callforcolorfilter('black')"><img src="./assets/img/black-gradient_35x25.png"></li>
-                        <li class="cream-color" onclick="callforcolorfilter('lightpink')"><img src="./assets/img/Pink_35x25.png"></li>
-                        
-                    </ul>
-                    <!-- <div id="divColorPicker" style="display:none; overflow:visible;position:absolute;background-color:#000">
-							<div id="divColorName" style="background-color:#fff;width:100%;padding:auto;border:3px solid #000;text-align:center">
-								ALL
-							</div>
-							<div onclick="settext('ALL')" style="background-color:#000;width:100%;padding:auto;border:3px solid #000;text-align:center">
-							</div>
-							<div style="height:350px; width:60px;margin-top:30px">
-								<div class="sp-hue border-colorpicker">
-									<div onclick="settext('orange')" id='c1' style="height:5%"></div>
-									<div onclick="settext('orange')" id='c2' style="height:5%"></div>
-									<div onclick="settext('orange')" id='c3' style="height:5%"></div>
-									<div onclick="settext('green')" id='c4' style="height:5%"></div>
-									<div onclick="settext('green')" id='c5' style="height:5%"></div>
-									<div onclick="settext('green')" id='c6' style="height:5%"></div>
-									<div onclick="settext('green')" id='c7' style="height:5%"></div>
-									<div onclick="settext('green')" id='c8' style="height:5%"></div>
-									<div onclick="settext('green')" id='c9' style="height:5%"></div>
-									<div onclick="settext('blue')" id='c10' style="height:5%"></div>
-									<div onclick="settext('blue')" id='c11' style="height:5%"></div>
-									<div onclick="settext('blue')" id='c12' style="height:5%"></div>
-									<div onclick="settext('blue')" id='c13' style="height:5%"></div>
-									<div onclick="settext('blue')" id='c14' style="height:5%"></div>
-									<div onclick="settext('blue')" id='c15' style="height:5%"></div>
-									<div onclick="settext('blue')" id='c16' style="height:5%"></div>
-									<div onclick="settext('pink ,blue')" id='c17' style="height:5%"></div>
-									<div onclick="settext('pink')" id='c18' style="height:5%"></div>
-									<div onclick="settext('red')" id='c19' style="height:5%"></div>
-									<div onclick="settext('red')" id='c20' style="height:5%"></div>
-								</div>
-							</div>
-						</div> -->
+        </main>
+    </div>
+    <footer id="pagefooter">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-4 col-sm-4 col-xs-4">
+                    <div class="row">
+                        <div class="demo">
+                            <div class="btn-group dropdisable">
+                                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"><img src="img/icons/filter_white.png" width="20" height="25"></button>
+                                <ul class="dropdown-menu drop-up product-filter needsclick scrollable-menu-filter" role="menu">
+                                    <li id="googles">
+                                        <a href="#"><img src="img/icons/goggles.png"></a>
+                                    </li>
+                                    <li id="wwatchimg">
+                                        <a href="#"><img src="img/icons/watch.png"></a>
+                                    </li>
+                                    <li id="wdressimg">
+                                        <a href="#"><img src="img/icons/dress.png"></a>
+                                    </li>
+                                    <li id="wring">
+                                        <a href="#"><img src="img/icons/ring.png"></a>
+                                    </li>
+                                    <li id="wbag">
+                                        <a href="#"><img src="img/icons/bag.png"></a>
+                                    </li>
+                                    <li id="wsandal">
+                                        <a href="#"><img src="img/icons/sandal.png"></a>
+                                    </li>
+                                    
+                                    
+                                    
+                                    <li id="maleall">
+                                        <a href="#"><img src="img/icons/all.png"></a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </div>
-            <div class="col-xs-2">
-                <div class="dropdown" id="favoritedropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" id="colord"> <img src="./assets/img/Fav_white.png" class="pop-menu-favourite"></a>
-                    <ul class="dropdown-menu scrollable-menu-favourite" id='mylist'>
-                        <!--addfav item-->
-                    </ul>
+                <div class="col-md-4 col-sm-4 col-xs-4">
+                    <div class="row">
+                        <div class="btn-group dropdisable" id="favoritedropdown">
+                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" id="colord"><img src="img/icons/fav_white.png" width="28" height="25"></button>
+                            <ul class="row dropdown-menu drop-up favorite-filter scrollable-menu-favourite" role="menu" id="mylist">
+                                
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <!-- <div class="col-md-4 col-sm-4 col-xs-4">
+                    <div class="row">
+                        <div class="btn-group dropdisable" id="colorDropDown">
+                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" id="clickforcolor"><img src="img/icons/paint_white.png" width="28" height="25"></button>
+                            <ul class="dropdown-menu drop-up color-filter" role="menu">
+                                <div id="flat-slider-vertical-1"></div>
+                            </ul>
+                        </div>
+                    </div>
+                </div> -->
+                 <div class="col-md-4 col-sm-4 col-xs-4">
+                    <div class="row">
+                        <div class="btn-group dropdisable">
+                            <button type="button" class="btn btn-default dropdown-toggle disabled" data-toggle="dropdown"><img src="img/icons/profile_white.png" width="22" height="25"></button>
+                            <!-- <ul class="dropdown-menu drop-up" role="menu">
+                                <li></li>
+                                <li></li>
+                                <li></li>
+                                <li></li>
+                                <li></li>
+                            </ul> -->
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-    <div class="container-fluid off-white-bg">
-        <div class=" add-items">
-        </div>
-        <!--	<div class="row bottom-search-bg">
-						<div class="col-xs-12" >
-							<form class="form-inline">
-								<div class="form-group bottom-search-margin">
-									<div class="input-group">
-										<div class="input-group-addon search-button"><img src="./assets/img/Search-white.png"></div>
-										<input type="text" class="form-control search-box" placeholder="Close">
-										<div class="input-group-addon choose-option">
-											<div class="dropup">
-												<a class="dropdown-toggle" data-toggle="dropdown"> <img src="./assets/img/dollar.png" class="money-icon"></a>
-													<ul class="dropdown-menu scrollable-bottom-menu">
-														<li><a href="#"></a><img src="./assets/img/trending.png"></li>
-														<li><a href="#"></a><p>TRENDING</p></li>
-														<li><a href="#"></a><img src="./assets/img/best-price.png"></li>
-														<li><a href="#"></a><p>BEST PRICE</p></li>
-														<li><a href="#"></a><img src="./assets/img/luxury.png"></li>
-														<li><a href="#"></a><p>LUXURY</p></li>
-											</div>
-										</div>
-									</div>
-								</div>
-							</form>
-						</div>
-					</div> -->
-    </div>
-    <div class="modal1">
-        <!-- Place at bottom of page -->
-    </div>
-    <script type="text/javascript" src="js/cart_Page.js"></script>
-    <script type="text/javascript" src="js/index.js"></script>
+    </footer>
+    <script type="text/javascript" src="cordova.js"></script>
+    <script src="js/lib/jquery/jquery.min.js"></script>
+    <script src="js/lib/bootstrap/bootstrap.min.js"></script>
     <script src="js/lib/jquery-ui/jquery-ui.js"></script>
     <script src="js/lib/jquery-touch/jquery.ui.touch-punch.min.js"></script>
-    <script type="text/javascript" src="js/spectrum.js"></script>
-</body>
-<script>
-$('#clickforcolor').click(function(e) {
+    <script src="js/lib/hammer/hammer.js"></script>
+    <script src="js/lib/hammer/jquery.hammer.js"></script>
+    <script src="js/lib/odometer/odometer.js"></script>
+    <script src="js/common.js"></script>
+    <script src="js/index.js"></script>
+    <script src="js/cart_Page.js"></script>
+    <script>
+    $("#flat-slider-vertical-1")
+        .slider({
+            max: 25,
+            min: 0,
+            range: "min",
+            value: 0,
+            orientation: "vertical"
+        });
+    </script>
+    <script>
+    $(document).ready(function() {
 
-    if ($("#fColorSlider").is(':visible'))
-        $("#fColorSlider").hide();
+        $(".dropdisable").on("shown.bs.dropdown", function(event) {
+            $('body').addClass('hightlight-body');
+            $("#mylist li").hammer().on("swipeleft swiperight", function() {
+                removeFromFavorite(this);
+            });
 
-    else {
-        $("#fColorSlider").show();
+        });
+        $(".dropdisable").on("hidden.bs.dropdown", function(event) {
+            $('body').removeClass('hightlight-body');
+        });
 
-    }
-});
-
-$(document).ready(function() {
-    $("#fColorSlider").slider({
-        max: 100,
-        min: 0,
-        range: "min",
-        value: 0,
-        orientation: "vertical"
     });
-});
-
-/*$("#fColorSlider").on("slidestop", function(event, ui) {
-	console.log("ui.value:" + ui.value)
-	if (ui.value > 0 && ui.value < 10)
-		$("#divColorName").text("Black");
-	else if (ui.value > 10 && ui.value < 20)
-		$("#divColorName").text("Grey");
-	else if (ui.value > 20 && ui.value < 30)
-		$("#divColorName").text("White");
-	else if (ui.value > 20 && ui.value < 30)
-		$("#divColorName").text("Pink");
-	else if (ui.value > 30 && ui.value < 40)
-		$("#divColorName").text("Blue");
-	else if (ui.value > 30 && ui.value < 40)
-		$("#divColorName").text("Violet");
-	else if (ui.value > 40 && ui.value < 50)
-		$("#divColorName").text("Green");
-	else if (ui.value > 50 && ui.value < 60)
-		$("#divColorName").text("Yellow");
-	else if (ui.value > 60 && ui.value < 70)
-		$("#divColorName").text("Orange");
-	else if (ui.value > 70 && ui.value < 80)
-		$("#divColorName").text("Maroon");
-	else if (ui.value > 80 && ui.value < 99)
-		$("#divColorName").text("Red");
-	else if (ui.value == 0 || ui.value == 100)
-		$("#divColorName").text("All");
-});*/
-$("#openpickerlink").spectrum({
-    color: "#dd3333",
-    change: function(coloe) {
-        alert("updating borders")
-
-    },
-    show: function() {
-        //alert("Shown")
-
-    },
-    hide: function() {
-        alert("hidden")
-    }
-});
-
-function settext(text) {
-    $("#divColorName").html(text);
-
-}
-</script>
-<style type="text/css">
-.divCpicker {
-    height: 350px;
-    position': 'absolute';
- left: 0;
-    top: 0;
-    font-size: 10px;
-    width: auto;
-    height: 20px;
-    border: solid 1px red;
-}
-</style>
+    </script>
+</body>
 
 </html>

@@ -11,6 +11,70 @@
 
 	        }
 	    });
+
+	    function filterBasedOnCategory(cat) {
+	        $.ajax({
+	            type: 'GET',
+	            url: "http://staging12.getpriceapp.com/item/list/",
+	            beforeSend: function() {
+	                console.log('ajaxstart');
+	                $body.addClass("loading");
+	            },
+	            complete: function() {
+	                //alert('ajaxstopp')
+	                $body.removeClass("loading");
+
+	            },
+	            contentType: "application/json",
+	            dataType: "json",
+	            data: {
+	                "category": cat,
+	                "page": page_no,
+	                "show_by": 10,
+	                'type': type
+
+	            },
+	            success: function(data) {
+	                //alert(JSON.stringify(data));
+
+	                console.log('insidesucees');
+	                var getitemdata = JSON.stringify(data);
+	                console.log(JSON.stringify(data));
+	                localStorage.setItem('itemdata', '');
+	                localStorage.setItem('itemdata', getitemdata);
+	                var parsedata = JSON.parse(localStorage.getItem('itemdata'));
+	                console.log(JSON.stringify(parsedata[0].paginator))
+	                console.log('329')
+	                if (parsedata[0].paginator.has_next)
+	                    hasnext = true;
+
+	                if (parsedata[0].products.length) {
+	                    console.log('calling load prof from windows ');
+	                    loadprof("false");
+	                    fetchFavorites(); //Load the favorites
+	                } else {
+	                    $('.add-items').html('');
+	                    mwidth = $(window).width();
+	                    mheight = $('body').height()
+
+	                    //$('.add-items').css({"height":mheight });
+	                    //$('.add-items').css({"width":mwidth });
+	                    $('.add-items').append('<div class="jumbotron">\
+			<h1>No Data Available</h1> </div>')
+
+
+	                }
+
+	            },
+
+	            error: function(xhr, status, error) {
+	                console.log(xhr);
+	            }
+
+
+	        }); //end of ajax call 
+
+	    }
 	    var scrollPos = 0; // variable for enabling & disabling scroll
 	    console.log('doc ready');
 	    localStorage.setItem('productid', ' ');
@@ -21,7 +85,7 @@
 	    var pk = '';
 	    page_no = 1;
 	    $body = $("body");
-	    cat = ""
+	    cat = "all"
 	    type = ''
 	    color = ''
 	    hasnext = false
@@ -52,14 +116,14 @@
 	    }
 
 	    if (userdata.fbGender == 'female') {
-	        cat = "";
+	        cat = "all";
 	        //cat = 'bags';
 	        type = 'female'
 	            //ajax call without color filter
 	        makeAjaxcall();
 
 	    } else {
-	        cat = "";
+	        cat = "all";
 	        type = 'male'
 	        makeAjaxcall();
 	    }
@@ -157,7 +221,7 @@
 	    });*/
 	    //add to cart 
 	    $(document).on('click', '.app-logo-in-popup', function() {
-	        cat = ""
+	        cat = "all"
 	        $('.add-items').html('');
 	        makeAjaxcall()
 
@@ -170,7 +234,7 @@
 
 	    });
 	    $(document).on('click', '.app-logo-in-popup', function() {
-	        cat = ""
+	        cat = "all"
 	        $('.add-items').html('');
 	        makeAjaxcall()
 
@@ -192,7 +256,7 @@
 	    	}); */
 	    //$('#colord').on('click' ,'#colord')
 	    //disable favorite if no favorite
-	    if ($('.scrollable-menu-favourite div').length < 1) {
+	    if ($('.scrollable-menu-favourite li').length < 1) {
 	        $("#favoritedropdown .dropdown-toggle").addClass("disabled");
 	    }
 
@@ -233,33 +297,41 @@
 
 
 
-	    $(".dropdown-menu").on("click", "li", function(event) {
-	        console.log("dropdown-menu id:" + event.target.id)
-	        var id = event.target.id;
+	    $(".needsclick").on("click", "li", function(event) {
+	        console.log("dropdown-menu id:" + $(this).attr('id'));
+	        var id = $(this).attr('id');
 
 
 	        categoryitemclicked = true
 	        page_no = 1;
 	        if (userdata.fbGender == 'female') {
 	            type = 'female'
-	            if (id == 'clothingimg') {
-	                cat = 'clothing' //req
+	            if (id == 'googles') {
+	                cat = 'sunglasses' //req
 	                console.log(cat);
 
-	            } else if (id == 'necklaceimg') {
-	                cat = 'accessories' //changed
+	            } else if (id == 'wwatchimg') {
+	                cat = 'watches' //changed
 
 
-	            } else if (id == 'purseimg') {
-	                cat = 'bags' // req
+	            } else if (id == 'wdressimg') {
+	                cat = 'clothing' // req
 	                console.log(cat);
 
-	            } else if (id == 'sandleimg') {
-	                cat = 'flowers' //change
+	            } else if (id == 'wring') {
+	                cat = 'jewelry' //change
+	                console.log(cat);
+
+	            } else if (id == 'wbag') {
+	                cat = 'bags' //change
+	                console.log(cat);
+
+	            } else if (id == 'wsandal') {
+	                cat = 'shoes' //change
 	                console.log(cat);
 
 	            } else {
-	                cat = "";
+	                cat = "all";
 
 
 
@@ -269,16 +341,16 @@
 	        } else {
 	            type = 'male'
 	                //alert('else')
-	            if (id == 'clothingimg') {
-	                cat = 'fashion' //changed
+	            if (id == 'shirtimg') {
+	                cat = 'clothing' //changed
 	                console.log(cat);
 
 	            } else if (id == 'watchimg') {
-	                cat = 'flowers' //changed
+	                cat = 'watches' //changed
 	                console.log(cat);
 
 	            } else if (id == 'gadgetimg') {
-	                cat = 'electronics' //old
+	                cat = 'gadgets' //old
 	                console.log(cat);
 
 
@@ -286,9 +358,15 @@
 	                cat = 'outdoor' //old
 	                console.log(cat);
 
+	            } else if (id == 'watchimg') {
+	                cat = 'watches'
+	            } else if (id == 'shoeimg') {
+	                cat = 'shoes';
+	            } else if (id == 'mensgoogles') {
+	                cat = 'sunglasses';
 	            } else {
 
-	                cat = ""; //old
+	                cat = "all"; //old
 
 	            }
 
@@ -342,7 +420,7 @@
 	                    //$('.add-items').css({"height":mheight });
 	                    //$('.add-items').css({"width":mwidth });
 	                    $('.add-items').append('<div class="jumbotron">\
-			<h1>No Data Available</h1> </div>')
+	    			<h1>No Data Available</h1> </div>')
 
 
 	                }
@@ -364,17 +442,16 @@
 	    });
 
 	    //add to fav on click of like button 
-
-
-	    $(document).on('click', '.like', function(e) {
-
-	        console.log('inside like:' + $(this).data("favorite"));
-	        var proid = parseInt(e.target.id);
-	        var propicid = e.target.id;
-	        if ($(this).data("favorite") == "like") {
-	            var purchaseurl = $(this).data("purchaseurl");
-	            $(this).data("favorite", "liked");
-	            $(this).attr("src", "./assets/img/liked.png");
+	    /*function addToFavorite(addedItem) {
+	        console.log('inside like:' + $(addedItem).data("favorite"));
+	        //var proid = parseInt(e.target.id);
+	        var proid = parseInt($(this).attr("id"));
+	        //var propicid = e.target.id;
+	        var propicid=$(addedItem).attr("id");
+	        if ($(addedItem).data("favorite") == "like") {
+	            var purchaseurl = $(addedItem).data("purchaseurl");
+	            $(addedItem).data("favorite", "liked");
+	            $(addedItem).attr("src", "img/liked.png");
 	            $.ajax({
 	                url: "http://staging12.getpriceapp.com/favourites/add",
 	                data: {
@@ -398,7 +475,7 @@
 	                    };
 	                    $('.scrollable-menu-favourite').append(getFavoritesHTML(favObject));
 	                    console.log("Successss - adding " + removefavid);
-	                    if ($('.scrollable-menu-favourite div').length > 0) {
+	                    if ($('.scrollable-menu-favourite li').length > 0) {
 	                        $("#favoritedropdown .dropdown-toggle").removeClass("disabled");
 	                    }
 
@@ -408,13 +485,77 @@
 	                }
 	            });
 	        } else {
-	            /*console.log("Already Liked");
-	            window.plugins.toast.showLongBottom('Already in your favorites list', function(a) {
-	            	console.log('toast success: ' + a)
-	            }, function(b) {
-	            	alert('toast error: ' + b)
-	            })*/
-	            $(this).attr("src", "./assets/img/like.png");
+	            
+	            $(addedItem).attr("src", "img/like.png");
+	            $(addedItem).data("favorite", "like");
+	            $.ajax({
+	                url: "http://staging12.getpriceapp.com/favourites/delete",
+	                data: {
+	                    'id': proid,
+	                    'user': localStorage.getItem('tokenid')
+	                },
+	                type: "POST",
+	                dataType: "json",
+	                success: function() {
+	                    var rmdivid = propicid + 'div';
+	                    console.log("Successss " + rmdivid);
+	                    $("#" + rmdivid).remove();
+
+	                    if ($('.scrollable-menu-favourite li').length < 1) {
+	                        $("#favoritedropdown .dropdown-toggle").addClass("disabled");
+	                    }
+	                },
+	                error: function() {
+	                    console.log("No JSON data returned");
+	                }
+	            });
+	        }
+	    }*/
+
+	    $(document).on('click', '.like', function(e) {
+
+	        console.log('inside like:' + $(this).data("favorite"));
+	        var proid = parseInt(e.target.id);
+	        var propicid = e.target.id;
+	        if ($(this).data("favorite") == "like") {
+	            var purchaseurl = $(this).data("purchaseurl");
+	            $(this).data("favorite", "liked");
+	            $(this).attr("src", "img/liked.png");
+	            $.ajax({
+	                url: "http://staging12.getpriceapp.com/favourites/add",
+	                data: {
+	                    'item': proid,
+	                    'user': localStorage.getItem('tokenid')
+	                },
+	                type: "POST",
+	                dataType: "json",
+	                success: function(response) {
+	                    console.log(response);
+	                    console.log(JSON.stringify(response));
+	                    console.log(proid);
+	                    var srcimg = $("#" + proid).attr('src')
+	                    console.warn(srcimg);
+	                    var removefavid = response.pk;
+	                    var favObject = {
+	                        itemThumbURL: srcimg,
+	                        itemStoreLink: purchaseurl,
+	                        pk: removefavid,
+	                        likebtnid: propicid
+	                    };
+	                    $('.scrollable-menu-favourite').append(getFavoritesHTML(favObject));
+	                    console.log("Successss - adding " + removefavid);
+	                    if ($('.scrollable-menu-favourite li').length > 0) {
+	                        $("#favoritedropdown .dropdown-toggle").removeClass("disabled");
+	                    }
+
+	                },
+	                error: function() {
+	                    console.log("No JSON data returned");
+	                }
+	            });
+	        } else {
+	            
+	            $(this).attr("src", "img/like.png");
 	            $(this).data("favorite", "like");
 	            $.ajax({
 	                url: "http://staging12.getpriceapp.com/favourites/delete",
@@ -429,7 +570,7 @@
 	                    console.log("Successss " + rmdivid);
 	                    $("#" + rmdivid).remove();
 
-	                    if ($('.scrollable-menu-favourite div').length < 1) {
+	                    if ($('.scrollable-menu-favourite li').length < 1) {
 	                        $("#favoritedropdown .dropdown-toggle").addClass("disabled");
 	                    }
 	                },
@@ -516,7 +657,7 @@
 	        $(".shopname").animateCss("flipOutX");
 	    }, 2900);
 	    setTimeout(function() {
-	        od.update(realValue -9);
+	        od.update(realValue - 9);
 	        $(".shopname").text("Overstock.com");
 	        $(".shopname").animateCss("flipOutX");
 	    }, 3200);
@@ -671,6 +812,87 @@
 	    }); //end of ajax call
 	}
 
+	function loadprofNew(clear) {
+	    var parsedata = JSON.parse(localStorage.getItem('itemdata'));
+	    if (clear == "true") {
+	        console.warn("Clearing product list");
+	        $('.add-items').html(' '); // if clear==true empty the products list(To avoid problems with Load more have used it)
+	    }
+	    if (categoryitemclicked) {
+	        $('.add-items').html(' ');
+	        categoryitemclicked = false;
+	    }
+	    for (var i = 0; i < parsedata[0].products.length; i++) {
+	        var img10, img11;
+	        var v = i + 1;
+	        if (parsedata[0].products[i].fields.photo_set.length)
+	            img10 = parsedata[0].products[i].fields.photo_set[0].url_large;
+	        else
+	            img10 = parsedata[0].products[i].fields.photo_set[0].url_large || "img/no_img.png";
+	        if (parsedata[0].products[v].fields.photo_set.length)
+	            img10 = parsedata[0].products[v].fields.photo_set[0].url_large;
+	        else
+	            img10 = parsedata[0].products[v].fields.photo_set[0].url_large || "img/no_img.png";
+	        //checking for long text
+	        if (parsedata[0].products[i].fields.description != null && parsedata[0].products[i].fields.description.length > 10) {
+	            var shorttext = trimLong(parsedata[0].products[i].fields.description);
+	            parsedata[0].products[i].fields.description = shorttext;
+	        }
+
+	        if (parsedata[0].products[i].fields.brand != null && parsedata[0].products[i].fields.brand.length > 10) {
+	            var shorttext = trimLong(parsedata[0].products[i].fields.brand);
+	            parsedata[0].products[i].fields.brand = shorttext;
+	        }
+	        if (parsedata[0].products[i].fields.brand)
+	            console.log("Brand available");
+	        else parsedata[0].products[i].fields.brand = 'N/A';
+	        if (parsedata[0].products[i].fields.description)
+	            console.log("Description available");
+	        else parsedata[0].products[i].fields.description = 'N/A'
+
+	        if (parsedata[0].products[v].fields.description != null && parsedata[0].products[v].fields.description.length > 10) {
+	            var shorttext = trimLong(parsedata[0].products[v].fields.description);
+	            parsedata[0].products[v].fields.description = shorttext;
+	        }
+
+	        if (parsedata[0].products[v].fields.brand != null && parsedata[0].products[v].fields.brand.length > 10) {
+	            var shorttext = trimLong(parsedata[0].products[v].fields.brand);
+	            parsedata[0].products[v].fields.brand = shorttext;
+	        }
+	        if (parsedata[0].products[v].fields.brand)
+	            console.log("Brand available");
+	        else parsedata[0].products[v].fields.brand = 'N/A';
+	        if (parsedata[0].products[v].fields.description)
+	            console.log("Description available");
+	        else parsedata[0].products[v].fields.description = 'N/A'
+	        $(".add-items").append('<div class="row"><div class="col-md-3 col-sm-6 col-xs-6">' + renderItemNew(i, parsedata[0].products[i], img10) + '</div><div class="col-md-3 col-sm-6 col-xs-6">' + renderItemNew(v, parsedata[0].products[v], img11) + '</div></div>');
+	    }
+	}
+
+	function renderItemNew(uniqueId, product, imgUrl) {
+	    if (typeof product == 'undefined') {
+	        return "";
+	    } else {
+	        var productHtml = '<div class="product-list">'; // productlist start
+	        productHtml += '<img src="' + imgUrl + '" class="img-responsive items" data-carid="myModal' + uniqueId + '" onclick="setSelectedProduct(this)" id="' + product.fields.id + '" alt=' + uniqueId + ' data-toggle="modal" data-target="#myModal' + uniqueId + '">'; // Product image
+	        productHtml += getModalHTML(uniqueId, product, imgUrl); // Modal html maker call
+	        productHtml += '<div class="product-title">'; // product title start
+	        productHtml += '<p class="favorite"><img src="img/icons/fav_gray.png" class="like" data-favorite="like" data-purchaseurl="' + product.fields.purchase_url + '" id="' + product.fields.id + 'like"></p>'
+	        productHtml += '<h5 data-carid="myModal' + uniqueId + '" onclick="setSelectedProduct(this)" id="' + product.fields.id + '" data-toggle="modal" data-target="#myModal' + uniqueId + '">' + product.fields.brand + '</h5>'; // product name start & end
+	        productHtml += '</div>'; // product title end
+	        productHtml += '</div>'; // productlist end
+	        return productHtml;
+	    }
+	    /*return '<img src="' + imgUrl + '" class="img-responsive items" data-carid="myModal' + uniqueId + '" onclick="setSelectedProduct(this)" id="' + product.fields.id + '" alt=' + uniqueId + ' data-toggle="modal" data-target="#myModal' + uniqueId + '">\
+									' + getModalHTML(uniqueId, product, imgUrl) +
+	        '<div class="row border-outline">\
+										<div class="col-xs-12 pic" >\
+											<p ><img src="./assets/img/like.png"  class="like" data-favorite="like" data-purchaseurl="' + product.fields.purchase_url + '" id="' + product.fields.id + 'like"><span style="text-decoration: none!important;" data-carid="myModal' + uniqueId + '" onclick="setSelectedProduct(this)" id="' + product.fields.id + '" data-toggle="modal" data-target="#myModal' + uniqueId + '">' + product.fields.brand + '</span>\
+												<br> <span style="display:none" class="strike" data-carid="myModal' + uniqueId + '" onclick="setSelectedProduct(this)" id="' + product.fields.id + '" data-toggle="modal" data-target="#myModal' + uniqueId + '">$' + product.fields.price + '</span></p>\
+										</div>\
+									</div>';*/
+	}
+
 	function loadprof(clear) {
 	    var parsedata = JSON.parse(localStorage.getItem('itemdata'));
 	    //  alert(JSON.stringify(parsedata));
@@ -711,7 +933,7 @@
 	        else {
 	            console.log('else')
 	            console.log(parsedata[0].products[i].fields.id)
-	            img10 = "./assets/img/no_img.png"
+	            img10 = "img/no_img.png"
 	        }
 	        //console.log(parsedata[0].products[i + 1].fields.id)
 	        if (parsedata[0].products[v]) {
@@ -720,7 +942,7 @@
 	            else {
 	                console.log('else')
 	                console.log(parsedata[0].products[v].fields.id)
-	                img11 = "./assets/img/no_img.png"
+	                img11 = "img/no_img.png"
 
 
 	            }
@@ -774,10 +996,9 @@
 
 
 	        //modal code for loadpfrof
-	        $('.add-items').append('<div class="row ">\
-								<div class="col-xs-6 right-padding ">' + renderItem(i, parsedata[0].products[i], img10) +
+	        $('.add-items').append('<div class="col-md-3 col-sm-6 col-xs-6 product-right-padding">' + renderItemNew(i, parsedata[0].products[i], img10) +
 	            '</div>\
-								<div class="col-xs-6 left-padding ">' + renderItem(i + 1, parsedata[0].products[i + 1], img11) +
+								<div class="col-md-3 col-sm-6 col-xs-6 product-left-padding">' + renderItemNew(i + 1, parsedata[0].products[i + 1], img11) +
 	            '</div>');
 
 
@@ -791,12 +1012,12 @@
 	        return "";
 	    }
 	    console.warn(product);
-	    return '<img src="' + imgUrl + '" class="img-responsive items" data-carid="myModal' + uniqueId + '" onclick="setSelectedProduct(this)" id="' + product.fields.id + '" alt=' + uniqueId + ' data-toggle="" data-target="#myModal' + uniqueId + '">\
+	    return '<img src="' + imgUrl + '" class="img-responsive items" data-carid="myModal' + uniqueId + '" onclick="setSelectedProduct(this)" id="' + product.fields.id + '" alt=' + uniqueId + ' data-toggle="modal" data-target="#myModal' + uniqueId + '">\
 									' + getModalHTML(uniqueId, product, imgUrl) +
 	        '<div class="row border-outline">\
 										<div class="col-xs-12 pic" >\
-											<p ><img src="./assets/img/like.png"  class="like" data-favorite="like" data-purchaseurl="' + product.fields.purchase_url + '" id="' + product.fields.id + 'like"><span style="text-decoration: none!important;" onclick="setSelectedProduct(this)" id="' + product.fields.id + '" data-toggle="modal" data-target="#myModal' + uniqueId + '">' + product.fields.brand + '</span>\
-												<br> <span style="display:none" class="strike" onclick="setSelectedProduct(this)" id="' + product.fields.id + '" data-toggle="modal" data-target="#myModal' + uniqueId + '">$' + product.fields.price + '</span></p>\
+											<p ><img src="./assets/img/like.png"  class="like" data-favorite="like" data-purchaseurl="' + product.fields.purchase_url + '" id="' + product.fields.id + 'like"><span style="text-decoration: none!important;" data-carid="myModal' + uniqueId + '" onclick="setSelectedProduct(this)" id="' + product.fields.id + '" data-toggle="modal" data-target="#myModal' + uniqueId + '">' + product.fields.brand + '</span>\
+												<br> <span style="display:none" class="strike" data-carid="myModal' + uniqueId + '" onclick="setSelectedProduct(this)" id="' + product.fields.id + '" data-toggle="modal" data-target="#myModal' + uniqueId + '">$' + product.fields.price + '</span></p>\
 										</div>\
 									</div>';
 	}
@@ -811,58 +1032,80 @@
 	    console.warn(product);
 	    console.log("myModal")
 	    console.log(uniqueId)
-	    return '<div class="modal modalview" id="myModal' + uniqueId + '" role="dialog">\
+	    var modalHtml = '<div class="modal" id="myModal' + uniqueId + '" tabindex="-1" role="dialog">'; // Modal start
+	    modalHtml += '<div class="modal-dialog modal-sm">'; // Modal inner div start
+	    modalHtml += '<img src="img/pop-up-close.png" class="pop-up-close-icon " id="' + uniqueId + '"  onclick=" clearData(this) ;$(\'#myModal' + uniqueId + '\').modal(\'hide\')">'; // close button
+	    modalHtml += '<div class="modal-content">'; // Modal content start
+	    modalHtml += '<div class="modal-content-inner modal-body">'; // Modal content inner start
+	    modalHtml += '<div id="myCarousel' + uniqueId + '" class="carousel slide" data-ride="carousel" data-pause="true" data-interval="false">'; // carousel start
+	    modalHtml += '<div class="carousel-inner" role="listbox">'; // Carousel inner start
+	    modalHtml += '<div class="item active"> <img id="img1myModal' + uniqueId + '" src=""  class="slider-img carimage"> </div>'; // Carousel image1
+	    modalHtml += '<div class="item"> <img id="img2myModal' + uniqueId + '" src="" class="slider-img carimage"> </div>'; // Carousel image 2
+	    modalHtml += '<div class="item"> <img id="img3myModal' + uniqueId + '" src="" class="slider-img carimage"> </div>'; // Carousel image 3
+	    modalHtml += '<div class="item"> <img id="img4myModal' + uniqueId + '" src="" class="slider-img carimage"> </div>'; // Carousel image 4
+	    modalHtml += '<ol class="carousel-indicators">'; // carousel indicator start
+	    modalHtml += '<li data-target="#myCarousel' + uniqueId + '" data-slide-to="0" class="active"></li>';
+	    modalHtml += '<li data-target="#myCarousel' + uniqueId + '" data-slide-to="1"></li>';
+	    modalHtml += '<li data-target="#myCarousel' + uniqueId + '" data-slide-to="2"></li>';
+	    modalHtml += '<li data-target="#myCarousel' + uniqueId + '" data-slide-to="3"></li>';
+	    modalHtml += '</ol>'; // carousel indicator end
+	    modalHtml += '</div>'; // Carousel inner end
+	    modalHtml += '</div>'; // Carousel end
+	    modalHtml += '<div class="row">'; // product name row start
+	    modalHtml += '<div class="col-xs-12"><p class="product-name-in-popup"></p></div>'; // product name start and end
+	    modalHtml += '</div>'; // product name row end
+	    modalHtml += '<div class="row product-detail-top-margin-in-popup">'; // product detail row start
+	    modalHtml += '<div class="col-xs-3"><p class="retail-text-in-popup">RETAIL </p><p class="retail-price-in-popup"><span>$</span><span class="retail_price_item"></span></p></div>';
+	    modalHtml += '<div class="col-xs-6 "><p class="discounted-price-in-pop-up"><span>$</span><span class="odometer"></span><span class="hidden hidden_real_price">' + parseFloat(product.fields.price_sold).toFixed(2) + '</span></p></div>';
+	    modalHtml += '<div class="col-xs-3"><p class="saved-text-in-popup">SAVED </p><p class="saved-amount-in-popup"><span>$</span><span class="saved-amount_price_item"></span></p></div>';
+	    modalHtml += '</div>'; // product detail row end
+	    modalHtml += '<div class="row" style="padding-right:10px; padding-left:10px">';
+	    modalHtml += '<div class="col-xs-12" >';
+	    modalHtml += '<button onclick="showPurchasePage(this)" class="btn btn-block buy-button-amazon" data-purchaseurl="" type="button">BUY <span class="shopname"></span></button>';
+	    modalHtml += '</div>';
+	    modalHtml += '</div>';
+	    modalHtml += '</div>'; // Modal content inner end
+	    modalHtml += '</div>'; // Modal content end
+	    modalHtml += '</div>'; // Modal inner div end
+
+	    modalHtml += '</div>'; // Modal end
+	    return modalHtml;
+	    /*return '<div class="modal" id="myModal' + uniqueId + '" tabindex="-1" role="dialog">\
 								<div class="modal-dialog modal-sm">\
-									<div class="modal-content  ">\
-										<div class="modal-body">\
-											<img src="./assets/img/pop-up-close.png" class="pop-up-close-icon " id="' + uniqueId + '"  onclick=" clearData(this) ;$(\'#myModal' + uniqueId + '\').modal(\'hide\')">\
+									<img src="img/pop-up-close.png" class="pop-up-close-icon " id="' + uniqueId + '"  onclick=" clearData(this) ;$(\'#myModal' + uniqueId + '\').modal(\'hide\')">\
+									<div class="modal-content">\
+										<div class="modal-content-inner">\
+											
 											<div id="myCarousel' + uniqueId + '" class="carousel slide" data-ride="carousel" data-pause="true" data-interval="false">\
-												<ol class="carousel-indicators top-margin-indicators">\
+												<ol class="carousel-indicators">\
 													<li data-target="#myCarousel' + uniqueId + '" data-slide-to="0" class="active"></li>\
 													<li data-target="#myCarousel' + uniqueId + '" data-slide-to="1"></li>\
 													<li data-target="#myCarousel' + uniqueId + '" data-slide-to="2"></li>\
 													<li data-target="#myCarousel' + uniqueId + '" data-slide-to="3"></li>\
 												</ol>\
-		\
+		
 												<div class="carousel-inner" role="listbox">\
 													<div class="item active">\
-														<div class="row">\
-															<div class="col-md-12" >\
 																<img id="img1myModal' + uniqueId + '" src=""  class="slider-img carimage">\
-															</div>\
-														</div>\
 													</div>\
 													<div class="item">\
-														<div class="row">\
-															<div class="col-md-12">\
 																<img id="img2myModal' + uniqueId + '" src="" class="slider-img carimage">\
-															</div>\
-														</div>\
 													</div>\
 													<div class="item">\
-														<div class="row">\
-															<div class="col-md-12">\
 																<img id="img3myModal' + uniqueId + '" src="" class="slider-img carimage">\
-															</div>\
-														</div>\
 													</div>\
 													<div class="item">\
-														<div class="row">\
-															<div class="col-md-12">\
 																<img id="img4myModal' + uniqueId + '" src="" class="slider-img carimage">\
-															</div>\
-														</div>\
 													</div>\
 												</div>\
 												</div>\
-											\
+											
 											<div class="row">\
 												<div class="col-xs-12">\
 													<p class="product-name-in-popup"></p>\
 												</div>\
 											</div>\
-							\
-											<div class="row product-detail-top-margin-in-popup">\
+												<div class="row product-detail-top-margin-in-popup">\
 												<div class="col-xs-3">\
 													<p class="retail-text-in-popup">RETAIL </p>\
 													<p class="retail-price-in-popup"><span>$</span><span class="retail_price_item"></span></p>\
@@ -875,19 +1118,15 @@
 													<p class="saved-amount-in-popup"><span>$</span><span class="saved-amount_price_item"></span></p>\
 												</div>\
 											</div>\
-											\
 											<div class="row" style="padding-right:10px; padding-left:10px">\
 												<div class="col-xs-12" >\
 													<button onclick="showPurchasePage(this)" class="btn btn-block buy-button-amazon" data-purchaseurl="" type="button">BUY <span class="shopname"></span></button>\
-\
 												</div>\
 											</div>\
-						\
 										</div>\
-							\
 									</div>\
 								</div>\
-							</div>';
+							</div>';*/
 	}
 
 	function showPurchasePage(selectedProduct) {
@@ -1016,7 +1255,7 @@
 	    var modalPosition = modalBody.position();
 	    console.warn(modalPosition);
 	    //$('.carousel-inner .item:first').addClass('active');
-	    imagex.css({
+	    /*imagex.css({
 	        "position": "absolute",
 	        "left": function() {
 	            if ($(e.target).parent().hasClass('left-padding')) {
@@ -1028,7 +1267,7 @@
 	        "top": function() {
 	            return (modalPosition.top + 20) + "px"
 	        }
-	    });
+	    });*/
 
 	    imagex.fadeIn("fast");
 	    console.log(index);
@@ -1124,6 +1363,7 @@
 
 	            loadprof("false");
 	            fetchFavorites(); //Load the favorites
+	            var parsedata = JSON.parse(localStorage.getItem('itemdata'));
 	            console.log(JSON.stringify(parsedata[0].paginator))
 	            if (parsedata[0].paginator.has_next)
 	                hasnext = true;
@@ -1372,12 +1612,16 @@
 
 	function getFavoritesHTML(favObj) {
 	    //data-likebtnid="'+favObj.likebtnid+'" 
-	    return '<div class="row favourite-dropdown-button-padding" id="' + favObj.likebtnid + 'div">\
+	    var favoriteHtml = '<li class="col-md-12 col-sm-12 col-xs-12" id="' + favObj.likebtnid + 'div" data-likebtnid="' + favObj.likebtnid + '" data-prodid="' + favObj.pk + '">';
+	    favoriteHtml += '<a href="#"><img src="' + favObj.itemThumbURL + '"></a>';
+	    favoriteHtml += '</li>';
+	    return favoriteHtml;
+	    /*return '<div class="row favourite-dropdown-button-padding" id="' + favObj.likebtnid + 'div">\
 							<img src="' + favObj.itemThumbURL + '" data-purchaseurl="' + favObj.itemStoreLink + '" class="favourite-item" style="width:100px;" onclick="showPurchasePage(this)">\
 							<div class="col-xs-6 cart-btn-right-padding">\
 								<button class="btn btn-block delete" type="button" class="removefav" data-likebtnid="' + favObj.likebtnid + '" data-prodid=' + favObj.pk + ' onclick="removeFromFavorite(this)"><img src="./assets/img/cross.png" id="' + favObj.pk + 'cross"></button>\
 							</div>\
-						</div>'
+						</div>'*/
 	}
 
 	function fetchFavorites() {
@@ -1397,13 +1641,13 @@
 	                favorites[i].likebtnid = itemIdProduct + "like";
 	                $('.scrollable-menu-favourite').append(getFavoritesHTML(favorites[i]));
 	                //update heart image
-	                $("#" + itemIdProduct + "like").attr("src", "./assets/img/liked.png");
+	                $("#" + itemIdProduct + "like").attr("src", "img/liked.png");
 	                $("#" + itemIdProduct + "like").data("favorite", "liked");
 	                console.warn("#" + itemIdProduct + "like");
 	                console.warn($("#" + itemIdProduct + "like"));
 	            }
 
-	            if ($('.scrollable-menu-favourite div').length > 0) {
+	            if ($('.scrollable-menu-favourite li').length > 0) {
 	                $("#favoritedropdown .dropdown-toggle").removeClass("disabled");
 	            }
 	        },
@@ -1431,9 +1675,9 @@
 	            console.log("Successss " + rmdivid);
 	            $("#" + rmdivid).remove();
 	            console.warn($("#" + rmdivid));
-	            $("#" + likePicId).attr("src", "./assets/img/like.png");
+	            $("#" + likePicId).attr("src", "img/like.png");
 	            $("#" + likePicId).data("favorite", "like");
-	            if ($('.scrollable-menu-favourite div').length < 1) {
+	            if ($('.scrollable-menu-favourite li').length < 1) {
 	                $("#favoritedropdown .dropdown-toggle").addClass("disabled");
 	            }
 	        },
