@@ -109,6 +109,47 @@ html, body { height: 100%; }
 .buy-button-amazon .bright { float:right; }
 .popup-price  { font-size:14px !important; vertical-align:-7px !important;}
 
+#pagecontent .pro-list-container { display: inline-block; width:100%; margin:0 auto; }
+#pagecontent .pro-list-container .pro-list { float:left; width:47%; margin:2% 2% 0% 2%; }
+#pagecontent .pro-list-container .pro-list .product-list { margin-bottom:0; }
+#pagecontent .pro-list-container .pro-list:last-child { margin-right:2%; margin-left:0; }
+.onoffswitch {
+    position: relative; width: 60px;
+    -webkit-user-select:none; -moz-user-select:none; -ms-user-select: none;
+}
+.onoffswitch-checkbox {
+    display: none;
+}
+.onoffswitch-label {
+    display: block; overflow: hidden; cursor: pointer;
+    height: 36px; padding: 0; line-height: 36px;
+    border: 2px solid #CCCCCC; border-radius: 36px;
+    background-color: #FFFFFF;
+    transition: background-color 0.3s ease-in;
+}
+.onoffswitch-label:before {
+    content: "";
+    display: block; width: 36px; margin: 0px;
+    background: #FFFFFF;
+    position: absolute; top: 0; bottom: 0;
+    right: 22px;
+    border: 2px solid #CCCCCC; border-radius: 36px;
+    transition: all 0.3s ease-in 0s; 
+}
+.onoffswitch-checkbox:checked + .onoffswitch-label {
+    background-color: #49E845;
+}
+.onoffswitch-checkbox:checked + .onoffswitch-label, .onoffswitch-checkbox:checked + .onoffswitch-label:before {
+   border-color: #49E845;
+}
+.onoffswitch-checkbox:checked + .onoffswitch-label:before {
+    right: 0px; 
+}
+#userDropDown { position:relative; }
+#userDropDown .abutton { outline:none; border:0; }
+#userDropDown .user-filter { position:absolute; bottom:39px; left:0; right:0; z-index:99999; width:100px; margin:0 auto; padding:20px; border: 2px solid #000; text-align:center; font-size:18px;  background:#fff; text-transform:uppercase; }
+
+
 @media only screen and (max-width: 800px) {
 #pagefooter .drop-up.favorite-filter { width: 280px; margin-left: -50%; }
 .modal-dialog { width: 85%; }
@@ -177,8 +218,8 @@ html, body { height: 100%; }
 	  font-family: 'Avenir Next Bold';
 	  font-weight:bold;
 	  color:#000;
-	  display: inline;
-	  position: fixed;
+	  /*display: inline;
+	  position: fixed;*/
 	}
 	
 	.saved-text-in-popup  {
@@ -188,7 +229,7 @@ html, body { height: 100%; }
 	}
 
 	.saved-amount-in-popup  {
-	  font-size:14px; margin-top:-11px; text-align:right; margin-left:-7px;
+	  font-size:14px; margin-top:-11px; text-align:right; margin-left:8px;
 	  font-family: 'Avenir Next Medium';
 	}
 	
