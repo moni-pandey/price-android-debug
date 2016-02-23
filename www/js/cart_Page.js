@@ -1283,7 +1283,7 @@
 
 	    //$('#wrapper').off('touchmove');
 		
-		
+	});
 	/*To enable scroll when color picker is hided*/
 	$('#colorDropDown,#favoritedropdown,#filterDropdown').on('shown.bs.dropdown', function() {
 	   // $('#wrapper').on('touchmove', false);
@@ -1308,7 +1308,7 @@
 		 var hammerobj = new Hammer(wrap[0],options);
 		hammerobj.on("dragup dragdown swipeup swipedown", function(ev){ });
 			});
-	});
+	
 	//show x after modal is shown and then reposition it
 	//hack because bootstrap and variable device size
 	$(document).on('shown.bs.modal', function(e) {
