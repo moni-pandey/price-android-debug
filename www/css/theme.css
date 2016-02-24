@@ -95,9 +95,9 @@ html, body { height: 100%; }
 .modal-content { padding: 7px 11px 6px; border-radius: 0; width:400px; border:1px solid #adadad;}
 .modal-dialog { width:90%; margin:0;  bottom: 40px; margin: auto; left: 50px; position: absolute; height: inherit; }
 .modal-content-inner {  }
-.carousel-indicators { position:static; width:100%; left:0; margin-left:0; margin:10px 0; }
-.carousel-indicators li { background:#CECECE; width:10px; height:10px; border:2px solid #B1B1B1; }
-.carousel-indicators .active { background:#000; width:12px; height:12px; border:2px solid #B1B1B1; }
+.carousel-indicators { position:static; width:100%; left:0; margin-left:0; margin:10px 0; border:0px !important} 
+.carousel-indicators li { background:#CECECE; width:10px; height:10px; }
+.carousel-indicators .active { background:#000; width:12px; height:12px;  }
 .pro-popup-details { text-align: center; text-transform: uppercase; }
 .pro-popup-details h3 { font-size:30px; margin-bottom:20px; }
 .pro-popup-details p { font-size:20px; }
