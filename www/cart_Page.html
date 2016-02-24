@@ -220,19 +220,6 @@
         });
 
     });
-	
-	
-	$('#colorDropDown,#filterDropdown').on('hidden.bs.dropdown', function() {
-	 
-	    $('#wrapper').off('touchmove');
-
-	});
-	/*To enable scroll when color picker is hided*/
-	$('#colorDropDown,#filterDropdown').on('shown.bs.dropdown', function() {
-	    $('#wrapper').on('touchmove', false);
-	    $(".user-filter").hide();
-	   
-	});
     </script>
 </body>
 

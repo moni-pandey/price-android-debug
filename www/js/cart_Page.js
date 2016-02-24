@@ -154,7 +154,14 @@
 	    index = ''
 		//fav design new 
 		favproducts = new Array();
+		
+		if (localStorage["favlocalpro"]) {
+			favproducts = ''
+       favproducts = JSON.parse(localStorage["favlocalpro"]);
+  
+        }
 
+		
 	    var userdata = loginMethods.getUserInfo();
 
 	    if (localStorage.getItem('backbuttonpressed') == 'true') {
@@ -165,6 +172,8 @@
 	        console.log(localStorage.getItem('page'));
 	        type = localStorage.choosedGender || localStorage.type
 	        console.log(localStorage.getItem('type'));
+			favproducts = ''
+			favproducts = JSON.parse(localStorage["favlocalpro"]);
 	        //color = localStorage.getItem('color');
 	        //console.log(localStorage.getItem('color'));
 	        if (color) {
@@ -694,60 +703,96 @@
 	    });*/
 	});
 
-	function changeText(od, realValue) {
+	function changeText(od, realValue,retailVal) {
+		realValue=parseFloat(localStorage.sellingPrice);
+		retailVal=parseFloat(localStorage.retailPrice);
 	    $(".shopname").text("Rei.com");
 	    /*setTimeout(function() {
 	                    $(".shopname").text("Rei.com");
 	                    $(".shopname").animateCss("flipOutX");
 	                }, 500);*/
 	    setTimeout(function() {
-	        od.update((realValue - 0.15));
+	    	var tempPrice=parseFloat((realValue - 0.15)).toFixed(2);
+	    	var tempSaved=(retailVal-tempPrice);
+	        od.update(tempPrice);
+	        $(".saved-amount_price_item").text(tempSaved);
 	        $(".shopname").text("Tradsey.com");
 	        $(".shopname").animateCss("flipOutX");
 	    }, 1100);
 	    setTimeout(function() {
-	        od.update((realValue - 0.25));
+	    	var tempPrice=(realValue - 0.25).toFixed(2);
+	    	var tempSaved=(retailVal-tempPrice);
+	        od.update(tempPrice);
+	        $(".saved-amount_price_item").text(tempSaved);
 	        $(".shopname").text("Oodle.com");
 	        $(".shopname").animateCss("flipOutX");
 	    }, 1400);
 	    setTimeout(function() {
-	        od.update((realValue - 0.35));
+	    	var tempPrice=(realValue - 0.35).toFixed(2);
+	    	var tempSaved=(retailVal-tempPrice);
+	        od.update(tempPrice);
+	        $(".saved-amount_price_item").text(tempSaved);
+	        //od.update((realValue - 0.35));
 	        $(".shopname").text("Nordtroms.com");
 	        $(".shopname").animateCss("flipOutX");
 	    }, 1600);
 	    setTimeout(function() {
-	        od.update((realValue - 0.45));
+	    	var tempPrice=(realValue - 0.45).toFixed(2);
+	    	var tempSaved=(retailVal-tempPrice);
+	        od.update(tempPrice);
+	        $(".saved-amount_price_item").text(tempSaved);
+	        //od.update((realValue - 0.45));
 	        $(".shopname").text("Cabelas.com");
 	        $(".shopname").animateCss("flipOutX");
 	    }, 1800);
 	    setTimeout(function() {
-	        od.update((realValue - 0.55));
+	    	var tempPrice=(realValue - 0.55).toFixed(2);
+	    	var tempSaved=(retailVal-tempPrice);
+	        od.update(tempPrice);
+	        $(".saved-amount_price_item").text(tempSaved);
+	        //od.update((realValue - 0.55));
 	        $(".shopname").text("Sportsauthority.com");
 	        $(".shopname").animateCss("flipOutX");
 	    }, 2000);
 	    setTimeout(function() {
-	        od.update((realValue - 0.65));
+	    	var tempPrice=(realValue - 0.65).toFixed(2);
+	    	var tempSaved=(retailVal-tempPrice);
+	        od.update(tempPrice);
+	        $(".saved-amount_price_item").text(tempSaved);
+	        //od.update((realValue - 0.65));
 	        $(".shopname").text("Ebay.com");
 	        $(".shopname").animateCss("flipOutX");
 	    }, 2300);
 	    setTimeout(function() {
-	        od.update((realValue - 0.75));
+	    	var tempPrice=(realValue - 0.75).toFixed(2);
+	    	var tempSaved=(retailVal-tempPrice);
+	        od.update(tempPrice);
+	        $(".saved-amount_price_item").text(tempSaved);
+	        //od.update((realValue - 0.75));
 	        $(".shopname").text("TheRealReal.com");
 	        $(".shopname").animateCss("flipOutX");
 	    }, 2600);
 	    setTimeout(function() {
-	        od.update((realValue - 0.85));
+	    	var tempPrice=(realValue - 0.85).toFixed(2);
+	    	var tempSaved=(retailVal-tempPrice);
+	        od.update(tempPrice);
+	        $(".saved-amount_price_item").text(tempSaved);
+	        //od.update((realValue - 0.85));
 	        $(".shopname").text("Etsy.com");
 	        $(".shopname").animateCss("flipOutX");
 	    }, 2900);
 	    setTimeout(function() {
-	        od.update((realValue - 1));
+	    	var tempPrice=(realValue - 1).toFixed(2);
+	    	var tempSaved=(retailVal-tempPrice);
+	        od.update(tempPrice);
+	        $(".saved-amount_price_item").text(tempSaved);
+	        //od.update((realValue - 1));
 	        $(".shopname").text("Overstock.com");
 	        $(".shopname").animateCss("flipOutX");
 	    }, 3200);
 	    setTimeout(function() {
 
-	        od.update(realValue);
+	        od.update(localStorage.sellingPrice);
 
 	        $(".shopname").text(localStorage.finalStoreName);
 	        $(".saved-amount_price_item").text(localStorage.savedPrice);
@@ -760,11 +805,15 @@
 	function setSelectedProduct(selectedPro) {
 	    var selectedProId = $(selectedPro).attr("id");
 		 localStorage.setItem('productClickedId' ,selectedProId);
-		// window.location='.html'
+		 localStorage.setItem('productClickedId' ,selectedProId);
+		 localStorage.setItem('productcat',cat);
+	     localStorage.setItem('page',page_no);
+		 localStorage["favlocalpro"] = JSON.stringify(favproducts);
+		 window.location='product_Details.html'
 		 
 		
 		/**  old flow for rendering product details page as popup**/
-	    var carId = $(selectedPro).data("carid");
+/*	    var carId = $(selectedPro).data("carid");
 	    // Stop Auto carousel
 	    $("#" + carId).carousel('pause');
 	    $("#" + carId).carousel(0);
@@ -776,7 +825,7 @@
 	    	//alert('The modal is about to be shown.');
 	    	changeText();
 
-	    });*/
+	    });
 	    $.ajax({
 	        type: 'GET',
 	        url: 'http://staging12.getpriceapp.com/item-details/' + selectedProId + '/',
@@ -805,7 +854,9 @@
 	            console.log(selectedProId);
 	            var modalTitle = data.title;
 	            var modalprice = data.price;
+	            localStorage.retailPrice=modalprice || 0;
 	            var modalprice_sold = data.price_sold;
+	            localStorage.sellingPrice=modalprice_sold || 0;
 	            var modalamount_saved = data.amount_saved;
 	            var plength = data.photo_set.length
 	            var productImages = data.photo_set;
@@ -872,9 +923,9 @@
 
 	            });
 	            if (modalTitle.length > 27) {
-					console.log("20:  " + modalTitle.replace(/^(.{27}[^\s]*).*/, "$1") + "\n");
-	                 var shortText =modalTitle.replace(/^(.{27}[^\s]*).*/, "$1");
-	                $("#" + carId).find(".product-name-in-popup").text(shortText);
+					console.log("20:  " + modalTitle.replace(/^(.{27}[^\s]*).*///, "$1") + "\n");
+	              //   var shortText =modalTitle.replace(/^(.{27}[^\s]*).*/, "$1");
+	            /*    $("#" + carId).find(".product-name-in-popup").text(shortText);
 	            } else
 	                $("#" + carId).find(".product-name-in-popup").text(modalTitle);
 	            //' + parseFloat(modalprice).toFixed(2) + '
@@ -904,7 +955,7 @@
 
 	    }); //end of ajax call
 		
-		
+		*/
 		
 	}//end of function 
 
@@ -971,7 +1022,7 @@
 	    } else {
 	        var productHtml = '<div class="product-list">'; // productlist start
 	        productHtml += '<img style="height:169px" src="' + imgUrl + '" class="img-responsive items" data-carid="myModal' + uniqueId + '" onclick="setSelectedProduct(this)" id="' + product.fields.id + '" alt=' + uniqueId + ' data-toggle="modal" data-target="#myModal' + uniqueId + '">'; // Product image
-	        productHtml += getModalHTML(uniqueId, product, imgUrl); // Modal html maker call
+	      //  productHtml += getModalHTML(uniqueId, product, imgUrl); // Modal html maker call
 	        productHtml += '<div class="product-title">'; // product title start
 	        productHtml += '<p class="favorite"><img src="img/icons/fav_gray.png" class="like" data-favorite="like" data-purchaseurl="' + product.fields.purchase_url + '" id="' + product.fields.id + 'like"></p>'
 	        productHtml += '<h5 data-carid="myModal' + uniqueId + '" onclick="setSelectedProduct(this)" id="' + product.fields.id + 'brand" data-toggle="modal" data-target="#myModal' + uniqueId + '">' + product.fields.brand + '</h5>'; // product name start & end
@@ -1365,7 +1416,7 @@
 	        return "";
 	    } else {
 	        var productHtml = '<div class="product-list">'; // productlist start
-	        productHtml += '<img style="height:169px" src="' + imgUrl + '" class="img-responsive items" data-carid="myModal' + uniqueId + '" onclick="setSelectedProduct(this)" id="' + product.pk + '" alt=' + uniqueId + ' data-toggle="modal" data-target="#myModal' + uniqueId + '">'; // Product image
+	        productHtml += '<img style="height:169px" src="' + imgUrl + '" class="img-responsive items" data-carid="myModal' + uniqueId + '" onclick="setSelectedProduct(this)" id="' + product.productid + '" alt=' + uniqueId + ' data-toggle="modal" data-target="#myModal' + uniqueId + '">'; // Product image
 	       //productHtml += getModalHTML(uniqueId, product, imgUrl); // Modal html maker call
 	        productHtml += '<div class="product-title">'; // product title start
 	        productHtml += '<p class="favorite"><img src="img/liked.png" class="liked" data-favorite="liked" data-purchaseurl="' + product.itemStoreLink + '" id="' + product.pk + 'like"></p>'
@@ -1478,7 +1529,7 @@
 	    od.value = retailVal;
 
 	    //od.update(realValue);
-	    changeText(od, realValue);
+	    changeText(od, realValue,retailVal);
 
 	});
 
