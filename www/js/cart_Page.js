@@ -165,6 +165,10 @@
 	    var userdata = loginMethods.getUserInfo();
 
 	    if (localStorage.getItem('backbuttonpressed') == 'true') {
+		
+			$(window).scrollTop(localStorage.getItem('oldposition'));
+
+			console.log($(window).scrollTop());
 	        localStorage.setItem('backbuttonpressed', 'false');
 	        cat = localStorage.getItem('productcat');
 	        console.log(localStorage.getItem('productcat'));
@@ -184,6 +188,8 @@
 	            console.log('lodng');
 	        //without color filter
 	        makeAjaxcall();
+			console.log($(window).scrollTop());
+			
 
 	    }
 
@@ -650,6 +656,7 @@
 
 	            $(this).attr("src", "img/like.png");
 	            $(this).data("favorite", "like");
+				
 	            $.ajax({
 	                url: "http://staging12.getpriceapp.com/favourites/delete",
 	                data: {
@@ -671,6 +678,14 @@
 	                    console.log("No JSON data returned");
 	                }
 	            });
+				
+   //removeItem from favproducts array 24-feb
+				
+     favproducts=favproducts
+                .filter(function (el) {
+                      return el.pk !== proid;
+                 }
+);
 	        }
 
 	    });
@@ -808,7 +823,10 @@
 		 localStorage.setItem('productClickedId' ,selectedProId);
 		 localStorage.setItem('productcat',cat);
 	     localStorage.setItem('page',page_no);
+		 console.log($(window).scrollTop());
+	      localStorage.setItem('oldposition',$(window).scrollTop());
 		 localStorage["favlocalpro"] = JSON.stringify(favproducts);
+		  
 		 window.location='product_Details.html'
 		 
 		
@@ -1419,7 +1437,7 @@
 	        productHtml += '<img style="height:169px" src="' + imgUrl + '" class="img-responsive items" data-carid="myModal' + uniqueId + '" onclick="setSelectedProduct(this)" id="' + product.productid + '" alt=' + uniqueId + ' data-toggle="modal" data-target="#myModal' + uniqueId + '">'; // Product image
 	       //productHtml += getModalHTML(uniqueId, product, imgUrl); // Modal html maker call
 	        productHtml += '<div class="product-title">'; // product title start
-	        productHtml += '<p class="favorite"><img src="img/liked.png" class="liked" data-favorite="liked" data-purchaseurl="' + product.itemStoreLink + '" id="' + product.pk + 'like"></p>'
+	        productHtml += '<p class="favorite"><img src="img/liked.png" class="like" data-favorite="liked" data-purchaseurl="' + product.itemStoreLink + '" id="' + product.pk + 'like"></p>'
 	        productHtml += '<h5 data-carid="myModal' + uniqueId + '" onclick="setSelectedProduct(this)" id="' + product.pk + 'brand" data-toggle="modal" data-target="#myModal' + uniqueId + '">' + product.productname + '</h5>'; // product name start & end
 	        productHtml += '</div>'; // product title end
 	        productHtml += '</div>'; // productlist end
