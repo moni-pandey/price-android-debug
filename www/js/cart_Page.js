@@ -1427,29 +1427,16 @@ function renderItemNew(uniqueId, product, imgUrl) {
 	      });*/
 	});
 	
+	
+	    
 	$(document).on('click','#favoritedropdown' ,function(){
-		$('.add-items').html('');
-		hasnext=false;
-              for(i=0;i<favproducts.length;i+=2)
-			  {
 		  
-		     if(favproducts[i]&&favproducts[i+1])
-			 {
-				 
-			 var img10=favproducts[i].itemThumbURL
-			 var img11=favproducts[i+1].itemThumbURL
-			 $('.add-items').append('<div class="pro-list-container"><div class="pro-list">' + renderItemfav(i, favproducts[i], img10) +
-	            '</div>\
-								<div class="pro-list">' + renderItemfav(i + 1, favproducts[i + 1], img11) +
-			  '</div></div>');} 
-			  else{
-				  
-				    var img10=favproducts[i].itemThumbURL
-				  $('.add-items').append('<div class="pro-list-container"><div class="pro-list">' + renderItemfav(i, favproducts[i], img10) +
-	            '</div>');
-				  
-			  }
-			  }
+           localStorage.setItem('productcat',cat);
+	     localStorage.setItem('page',page_no);
+		 //alert(JSON.stringify(favproducts))
+		 localStorage["favlocalpro"] = JSON.stringify(favproducts);
+		  window.location='favourite.html'
+		
 
 	})
 	
