@@ -153,6 +153,8 @@
 	        //to position popup(left/right)
 	    index = ''
 		//fav design new 
+		flag=false;
+		
 		favproducts = new Array();
 		
 		if (localStorage["favlocalpro"]) {
@@ -166,7 +168,6 @@
 
 	    if (localStorage.getItem('backbuttonpressed') == 'true') {
 	        localStorage.setItem('backbuttonpressed', 'false');
-			$(window).scrollTop(localStorage.getItem('oldposition'));
 	        cat = localStorage.getItem('productcat');
 	        console.log(localStorage.getItem('productcat'));
 	        page = localStorage.getItem('page');
@@ -672,10 +673,7 @@
 	                    console.log("No JSON data returned");
 	                }
 	            });
-				
-				
-								
-   //removeItem from favproducts array 24-feb
+				 //removeItem from favproducts array 24-feb
 				
      favproducts=favproducts
                 .filter(function (el) {
@@ -819,7 +817,6 @@
 		 localStorage.setItem('productClickedId' ,selectedProId);
 		 localStorage.setItem('productcat',cat);
 	     localStorage.setItem('page',page_no);
-		 localStorage.setItem('oldposition',$(window).scrollTop());
 		 localStorage["favlocalpro"] = JSON.stringify(favproducts);
 		 window.location='product_Details.html'
 		 
@@ -1028,7 +1025,7 @@
 	    }
 	}
 
-	function renderItemNew(uniqueId, product, imgUrl) {
+function renderItemNew(uniqueId, product, imgUrl) {
 		
 		console.log(product.fields.id);
 
