@@ -19,7 +19,10 @@
 
 	        }
 	    });
-	    $(".searching-best-price-text").animateCss("fadeIn");
+	   // $(".searching-best-price-text").animateCss("fadeIn");
+	  // $("#mycontent").append('<h6 class="searching-best-price-text">Searching for best price...</h6>').fadeIn(999);
+	  $('<h6 class="searching-best-price-text">Searching for best price...</h6>').appendTo("#mycontent").hide().fadeIn(999);
+		// $(".searching-best-price-text").fadeIn("slow");
 	    var modalc = $(document).find(".carousel");
 	    var hammerobj = new Hammer(modalc[0]);
 	    // modalc.carousel({
@@ -288,8 +291,9 @@
 
 	        $(".shopname").text(localStorage.finalStoreName);
 	        $(".saved-amount_price_item").text(localStorage.savedPrice);
-	        $(".searching-best-price-text").animateCss("fadeOut");
-	        $(".searching-best-price-text").hide();
+	        //$(".searching-best-price-text").animateCss("fadeOut");
+			$(".searching-best-price-text").fadeOut("slow");
+	       // $(".searching-best-price-text").hide();
 	    }, 3500);
 
 	    return false;
