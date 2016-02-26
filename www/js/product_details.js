@@ -28,7 +28,11 @@
 	
 			   }
 		}
-          //$(".save-to-favourite").text('SAVE TO FAVORITES');
+          else
+		  {
+			  
+			  $(".save-to-favourite").text('SAVE TO FAVORITES');
+		  }
 	  
 	    $(document).on('click', '.logodet', function() {
 	        localStorage.setItem('backbuttonpressed', 'true')
