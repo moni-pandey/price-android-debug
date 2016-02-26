@@ -11,6 +11,12 @@
 	    }
 	*/
 	
+	       $(document).bind("deviceready", function() {
+				document.addEventListener("backbutton", function() {
+							console.log("Disabled Back button");
+				});
+				});
+	
 	$('.add-itemsfav').html('');
 	favproducts = new Array();
 	if (localStorage["favlocalpro"]) {

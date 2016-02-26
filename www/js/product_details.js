@@ -11,6 +11,12 @@
 	   
   
         }
+		$(document).bind("deviceready", function() {
+				document.addEventListener("backbutton", function() {
+							console.log("Disabled Back button");
+				});
+				});
+		
 		  console.log(localStorage.getItem('productClickedId'));
 	    var selectedProId = localStorage.getItem('productClickedId');
 			if(favproducts.length!=0){
@@ -238,7 +244,7 @@
 	}*/			
 
 	function changeText(od, realValue, retailVal) {
-	    realValue = Math.ceil(parseFloat(localStorage.sellingPrice));
+	   realValue = Math.ceil(parseFloat(localStorage.sellingPrice));
 	   retailVal = Math.ceil(parseFloat(localStorage.retailPrice));
 	    $(".shopname").text("Rei.com");
 	    /*setTimeout(function() {
