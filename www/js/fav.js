@@ -1,9 +1,20 @@
 	$(document).ready(function() {
 	
+	
+	/*if (localStorage.getItem('backbuttonpressed') == 'true') {
+			console.log('bckbtn')
+	        localStorage.setItem('backbuttonpressed', 'false');
+	        favproducts = ''
+			favproducts = JSON.parse(localStorage["favlocalpro"]);
+		
+
+	    }
+	*/
+	
 	$('.add-itemsfav').html('');
 	favproducts = new Array();
 	if (localStorage["favlocalpro"]) {
-			favproducts = ''
+	   favproducts = ''
        favproducts = JSON.parse(localStorage["favlocalpro"]);
   
         }
@@ -32,7 +43,9 @@
 			  }
 		}
 		else{
-			alert('moni no fav')
+			var mwid =$(window).width() * .90;
+			$('.add-itemsfav').html('<img src="img/no_fav.png" style="width:100%;height:auto">');
+			
 		}
 	
 	// onclick like button 
@@ -157,7 +170,23 @@
 	}
 	function goback() {
       localStorage["favlocalpro"] = JSON.stringify(favproducts);
-	    localStorage.setItem('favbackbuttonpressed', 'true')
+	    localStorage.setItem('backbuttonpressed', 'true')
 	    parent.history.back()
 
 	}
+	
+	
+	
+		function setSelectedProduct(selectedPro) {
+	    var selectedProId = $(selectedPro).attr("id");
+		 localStorage.setItem('productClickedId' ,selectedProId);
+		 localStorage.setItem('productClickedId' ,selectedProId);
+		// localStorage.setItem('productcat',cat);
+	    // localStorage.setItem('page',page_no);
+		 localStorage["favlocalpro"] = JSON.stringify(favproducts);
+		 window.location='product_Details.html'
+		 
+		
+
+		
+	}//end of function 

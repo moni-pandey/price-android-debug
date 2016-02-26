@@ -1,8 +1,35 @@
 	$(document).ready(function(e) {
 		
 	    imageArray = new Array(5);
-	    console.log(localStorage.getItem('productClickedId'));
+		favproducts = new Array();
+		moda_purchaseURL=''
+		srcimg =''
+		brandname=''
+		if(localStorage["favlocalpro"]) {
+			favproducts = ''
+       favproducts = JSON.parse(localStorage["favlocalpro"]);
+	   
+  
+        }
+		  console.log(localStorage.getItem('productClickedId'));
 	    var selectedProId = localStorage.getItem('productClickedId');
+			if(favproducts.length!=0){
+			   	for(var j=0;j<favproducts.length;j++)
+		       {     
+		       
+		       if(selectedProId == favproducts[j].productid)
+		          { 
+			  console.log(favproducts[j].productid)
+	          console.log('already in list')
+			  $(".save-to-favourite").text('ADDED TO FAVORITES');
+			 
+			  $(".save-to-favourite").addClass("disabled")
+	          }
+	
+			   }
+		}
+          //$(".save-to-favourite").text('SAVE TO FAVORITES');
+	  
 	    $(document).on('click', '.logodet', function() {
 	        localStorage.setItem('backbuttonpressed', 'true')
 	        parent.history.back()
@@ -74,7 +101,8 @@
 	            var modalamount_saved = data.amount_saved;
 	            var plength = data.photo_set.length
 	            var productImages = data.photo_set;
-	            var moda_purchaseURL = data.purchase_url;
+	            moda_purchaseURL = data.purchase_url;
+				brandname=data.brand
 	            localStorage.finalStoreName = data.store_name || "Amazon";
 	            if (typeof productImages[1] == undefined)
 	                productImages[1].url_large == "./assets/img/no_img.png"
@@ -122,6 +150,8 @@
 	                imageArray[4] = "./assets/img/no_img.png"
 
 	            }
+				
+				srcimg = productImages[0].url_medium || "./assets/img/no_img.png"
 	            if (modalTitle.length > 27) {
 	                console.log("20:  " + modalTitle.replace(/^(.{27}[^\s]*).*/, "$1") + "\n");
 	                var shortText = modalTitle.replace(/^(.{27}[^\s]*).*/, "$1");
@@ -191,14 +221,21 @@
 	    //od.update(realValue);
 	    changeText(od, realValue, retailVal);
 	}
-
-	/*function priceManager(od,realValue,retailVal,retailPrice){
-		localStorage.retailPrice
-	}*/
+	/*	function priceManager(od,dummyVal, market) {
+		localStorage.retailPrice			    realValue = Math.ceil(parseFloat(localStorage.sellingPrice));
+	    retailVal = Math.ceil(parseFloat(localStorage.retailPrice));
+	    
+	    var tempPrice = parseFloat((retailVal - dummyVal)).toFixed(2);
+	    var tempSaved = (retailVal - tempPrice).toFixed(2);
+	    od.update(tempPrice);
+	    $(".saved-amount_price_item").text(tempSaved);
+	    $(".shopname").text(market);
+	    $(".shopname").animateCss("flipOutX");
+	}*/			
 
 	function changeText(od, realValue, retailVal) {
-	    realValue = parseFloat(localStorage.sellingPrice).toFixed(2);
-	    retailVal = parseFloat(localStorage.retailPrice).toFixed(2);
+	    realValue = Math.ceil(parseFloat(localStorage.sellingPrice));
+	   retailVal = Math.ceil(parseFloat(localStorage.retailPrice));
 	    $(".shopname").text("Rei.com");
 	    /*setTimeout(function() {
 	                    $(".shopname").text("Rei.com");
@@ -289,7 +326,7 @@
 
 	        od.update(localStorage.sellingPrice);
 
-	        $(".shopname").text(localStorage.finalStoreName);
+	        $(".shopname").text(localStorage.finalStoreName + ".com");
 	        $(".saved-amount_price_item").text(localStorage.savedPrice);
 	        //$(".searching-best-price-text").animateCss("fadeOut");
 			$(".searching-best-price-text").fadeOut("slow");
@@ -362,8 +399,70 @@
 	}
 
 	function goback() {
-
+       localStorage["favlocalpro"] = JSON.stringify(favproducts);
 	    localStorage.setItem('backbuttonpressed', 'true')
 	    parent.history.back()
 
 	}
+function addtofav()
+{
+	 $.ajax({
+	                url: "http://staging12.getpriceapp.com/favourites/add",
+	                data: {
+	                    'item': localStorage.getItem('productClickedId'),
+	                    'user': localStorage.getItem('tokenid')
+	                },
+	                type: "POST",
+	                dataType: "json",
+	                success: function(response) {
+	                    console.log(response);
+	                    console.log(JSON.stringify(response));
+	                    console.log(localStorage.getItem('productClickedId'));
+	                    //var srcimg = $("#" + proid).attr('src')
+						 //var brandid=proid +'brand'
+	                    // var brandimg = $("#" + brandid).html();
+	                    console.warn(brandname);
+	                    console.warn(srcimg);
+	                    console.warn(localStorage.getItem('productClickedId'));
+						var propicid= localStorage.getItem('productClickedId')+'like'
+	                    var removefavid = response.pk;
+	                    var favObject = {
+	                        itemThumbURL: srcimg,
+	                        itemStoreLink: moda_purchaseURL,
+	                        pk: removefavid,
+	                        likebtnid: propicid,
+							productname:brandname,
+							productid:localStorage.getItem('productClickedId')
+							
+	                    };
+					 var present=false;
+							for(var i=0;i<favproducts.length;i++)
+							{   if(favproducts[i].pk==response.pk)
+							present=true 
+						    }
+							if(present)	 
+							{console.log('product already present');}
+						else
+							favproducts.push(favObject);
+						
+						//alert(JSON.stringify(favproducts))
+						//alert(favproducts)
+						//fav new design 23 feb
+	                    //$('.scrollable-menu-favourite').append(getFavoritesHTML(favObject));
+	                    console.log("Successss - adding " + removefavid);
+	                    if ($('.scrollable-menu-favourite li').length > 0) {
+	                        $("#favoritedropdown .dropdown-toggle").removeClass("disabled");
+	                    }
+						 $(".save-to-favourite").text('ADDED TO FAVORITES');
+			       $(".save-to-favourite").addClass("disabled")
+
+	                },
+	                error: function() {
+	                    console.log("No JSON data returned");
+	                }
+	            });
+	
+	
+	
+	
+}
